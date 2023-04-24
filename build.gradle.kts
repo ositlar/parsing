@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "me.ositlar"
+group = "org.example"
 version = "0.1"
 
 repositories {
