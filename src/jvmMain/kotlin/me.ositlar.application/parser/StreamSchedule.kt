@@ -1,7 +1,9 @@
 package me.ositlar.application.parser
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class StreamSchedule(
     @SerialName("Поток") val stream: String,
     @SerialName("Группы") val groups: Array<GroupSchedule>
