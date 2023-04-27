@@ -2,12 +2,15 @@ package me.ositlar.application.repo
 
 import com.mongodb.ExplainVerbosity
 import com.mongodb.client.FindIterable
+import com.mongodb.client.MongoClients
 import org.json.JSONObject
-import org.litote.kmongo.KMongo
 import org.litote.kmongo.json
 
-val client = KMongo.createClient("mongodb://example@127.0.0.1:27017")
-val mongoDatabase = client.getDatabase("test")
+val mongoClient = MongoClients.create("mongodb://localhost:27017")
+val database = mongoClient.getDatabase("db")
+val collection = database.getCollection("testColl")
+
+val data = collection.find()
 
 fun prettyPrintJson(json: String) =
     println(
