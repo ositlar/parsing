@@ -79,21 +79,21 @@ fun controller(file: Document): MutableList<GroupSchedule> {
                         val subject = cell[coll].text().substringBefore("доц.").substringAfter(".")
                             .substringBefore("- 1").substringBefore("-2")
                         if (checkCells(typeWeek, days, time, subject))
-                            timeTable.add(GroupSchedule(typeWeek, days, time, subjectType, subject, teacher, classroom))
+                            timeTable.add(GroupSchedule(group,typeWeek, days, time, subjectType, subject, teacher, classroom))
                     }
                     else if (cell[coll].text().contains("проф.")) {
                         val teacher = cell[coll].text().substringAfter("проф.").substringBefore("а.")
                         val subject = cell[coll].text().substringBefore("проф.").substringAfter(".")
                             .substringBefore("- 1").substringBefore("-2")
                         if (checkCells(typeWeek, days, time, subject))
-                            timeTable.add(GroupSchedule(typeWeek, days, time, subjectType, subject, teacher, classroom))
+                            timeTable.add(GroupSchedule(group,typeWeek, days, time, subjectType, subject, teacher, classroom))
                     }
                     else if (cell[coll].text().contains("ст.пр.")){
                         val teacher = cell[coll].text().substringAfter("ст.пр.").substringBefore("а.")
                         val subject = cell[coll].text().substringBefore("ст.пр.").substringAfter(".")
                             .substringBefore("- 1").substringBefore("-2")
                         if (checkCells(typeWeek, days, time, subject))
-                            timeTable.add(GroupSchedule(typeWeek, days, time, subjectType, subject, teacher, classroom))
+                            timeTable.add(GroupSchedule(group,typeWeek, days, time, subjectType, subject, teacher, classroom))
                     }
                 } else {
                     val teacher = "-"
@@ -101,7 +101,7 @@ fun controller(file: Document): MutableList<GroupSchedule> {
                     val subjectType = "пр."
                     val classroom = "Сз.17"
                     if (checkCells(typeWeek, days, time, subject))
-                        timeTable.add(GroupSchedule(typeWeek, days, time, subjectType, subject, teacher, classroom))
+                        timeTable.add(GroupSchedule(group,typeWeek, days, time, subjectType, subject, teacher, classroom))
                 }
             }
         }

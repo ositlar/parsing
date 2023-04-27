@@ -1,13 +1,13 @@
-import kotlinx.browser.document
+import react.FC
+import react.Props
 import react.create
 import react.dom.client.createRoot
 
 fun main() {
-    val container = document.createElement("div")
-    document.body!!.appendChild(container)
+    val container = web.dom.document.getElementById("root")!!
+    createRoot(container).render(app.create())
+}
 
-    val welcome = Welcome.create {
-        name = "Kotlin/JS"
-    }
-    createRoot(container).render(welcome)
+val app = FC<Props> {
+
 }
