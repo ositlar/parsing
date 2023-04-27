@@ -15,9 +15,7 @@ data class StreamSchedule(
         other as StreamSchedule
 
         if (stream != other.stream) return false
-        if (!groups.contentEquals(other.groups)) return false
-
-        return true
+        return groups.contentEquals(other.groups)
     }
 
     override fun hashCode(): Int {

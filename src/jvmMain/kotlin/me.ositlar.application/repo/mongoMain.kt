@@ -8,7 +8,6 @@ import org.litote.kmongo.json
 
 val client = KMongo.createClient("mongodb://example@127.0.0.1:27017")
 val mongoDatabase = client.getDatabase("test")
-
 fun prettyPrintJson(json: String) =
     println(
         JSONObject(json)
@@ -19,5 +18,8 @@ fun prettyPrintCursor(cursor: Iterable<*>) =
     prettyPrintJson("{ result: ${cursor.json} }")
 
 fun prettyPrintExplain(cursor: FindIterable<*>) =
-    prettyPrintJson(cursor.explain(
-        ExplainVerbosity.EXECUTION_STATS).json)
+    prettyPrintJson(
+        cursor.explain(
+            ExplainVerbosity.EXECUTION_STATS
+        ).json
+    )
