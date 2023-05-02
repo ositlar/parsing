@@ -3,7 +3,6 @@ package me.ositlar.application.repo
 import com.mongodb.ExplainVerbosity
 import com.mongodb.client.FindIterable
 import com.mongodb.client.MongoClients
-import me.ositlar.application.parser.Parser
 import me.ositlar.application.parser.StreamSchedule
 import org.json.JSONObject
 import org.litote.kmongo.getCollection
@@ -16,17 +15,17 @@ val coll = database.getCollection<StreamSchedule>("schedule")
 
 //var data = collection.find().toString()
 //val mongo = database.getCollection<Pair<String, GroupSchedule>>().apply { drop() }
-var data = coll.insertOne(parse())
+//var data = coll.insertOne(parse())
 
-fun parse(): StreamSchedule {
-    val parseStreamSchedule = Parser("65.html")
-    val parsed = parseStreamSchedule.parseFile()
-//    val map = mapOf(parsed.stream to parsed.groups)
-//    //val newCollection = database.getCollection<String>()
-//    collection.insertOne(Document(map))
-//    return collection.find().toList().json
-    return StreamSchedule(parsed.stream, parsed.groups)
-}
+//fun parse(): StreamSchedule {
+//    val parseStreamSchedule = Parser("65.html")
+//    val parsed = parseStreamSchedule.parseFile()
+////    val map = mapOf(parsed.stream to parsed.groups)
+////    //val newCollection = database.getCollection<String>()
+////    collection.insertOne(Document(map))
+////    return collection.find().toList().json
+//    return StreamSchedule(parsed.stream, parsed.groups)
+//}
 
 
 fun prettyPrintJson(json: String) =
