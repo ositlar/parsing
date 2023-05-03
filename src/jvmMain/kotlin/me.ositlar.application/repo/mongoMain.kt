@@ -2,20 +2,17 @@ package me.ositlar.application.repo
 
 import com.mongodb.ExplainVerbosity
 import com.mongodb.client.FindIterable
-import com.mongodb.client.MongoClients
-import me.ositlar.application.parser.StreamSchedule
 import org.json.JSONObject
-import org.litote.kmongo.getCollection
 import org.litote.kmongo.json
 
-val mongoClient = MongoClients.create("mongodb://127.0.0.1:27017")
-val database = mongoClient.getDatabase("db")
-val collection = database.getCollection("test")
-val coll = database.getCollection<StreamSchedule>("schedule")
+//val mongoClient = MongoClients.create("mongodb://127.0.0.1:27017")
+//val database = mongoClient.getDatabase("db")
+//val collection = database.getCollection("test")
+//val coll = database.getCollection<StreamSchedule>("schedule")
 
 //var data = collection.find().toString()
 //val mongo = database.getCollection<Pair<String, GroupSchedule>>().apply { drop() }
-//var data = coll.insertOne(parse())
+//var data = collection.insertOne(getData())
 
 //fun parse(): StreamSchedule {
 //    val parseStreamSchedule = Parser("65.html")

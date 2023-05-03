@@ -64,11 +64,10 @@ kotlin {
                 implementation("io.ktor:ktor-server-html-builder-jvm:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$kotlinHtmlVersion")
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
-                implementation("org.jsoup:jsoup:1.13.1")
+                implementation("org.jsoup:jsoup:1.15.4")
                 implementation("org.litote.kmongo:kmongo-serialization:4.8.0")
                 implementation("org.litote.kmongo:kmongo-id-serialization:4.8.0")
                 implementation("org.json:json:20230227")
-                implementation("com.itextpdf:itextpdf:5.0.6")
                 implementation("org.mongodb:mongodb-driver-sync:4.2.3")
             }
         }

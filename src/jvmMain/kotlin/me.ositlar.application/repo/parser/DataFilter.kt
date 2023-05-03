@@ -1,4 +1,4 @@
-package me.ositlar.application.parser
+package me.ositlar.application.repo.parser
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

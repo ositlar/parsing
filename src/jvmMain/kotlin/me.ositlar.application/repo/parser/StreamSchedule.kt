@@ -1,9 +1,9 @@
-package me.ositlar.application.parser
+package me.ositlar.application.repo.parser
 
 
 data class StreamSchedule(
      val stream: String,
-     val groups: Array<GroupSchedule>
+     val groups: Array<SubjectInGroup>
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

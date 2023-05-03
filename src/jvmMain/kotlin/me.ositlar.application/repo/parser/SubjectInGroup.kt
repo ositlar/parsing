@@ -1,7 +1,9 @@
-package me.ositlar.application.parser
+package me.ositlar.application.repo.parser
 
+import kotlinx.serialization.Serializable
 
-data class GroupSchedule(
+@Serializable
+data class SubjectInGroup(
     val typeWeek: String,
     val dayOfWeek: String,
     val time: String,
