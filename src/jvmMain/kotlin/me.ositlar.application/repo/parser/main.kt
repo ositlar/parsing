@@ -1,6 +1,7 @@
 package me.ositlar.application.repo.parser
 
 //import me.ositlar.application.repo.mongo
+import common.SubjectInGroup
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.FileReader

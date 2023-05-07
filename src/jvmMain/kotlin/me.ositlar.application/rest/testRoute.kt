@@ -4,15 +4,18 @@ import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import me.ositlar.application.repo.subjectInGroupRepo
+import me.ositlar.application.repo.collection
+import me.ositlar.application.repo.groupSchedule
+import org.bson.Document
 
 fun Route.testRoute() {
     route("/MamaMia/"){
-        repoRoutes(subjectInGroupRepo)
+        repoRoutes(groupSchedule)
         get {
-            val subjectItems = subjectInGroupRepo.read()
+            val subjectItems = groupSchedule.read()
+            collection.insertOne(Document("group", subjectItems.first().elem.group).append("shedule", subjectItems.get(0).elem.schedule))
             //val subjects = subjectItems.map { it.elem.subject }
-            call.respond(subjectItems.map { it.elem.teacher }.toSet())
+            call.respond(collection.find())
         }
     }
     route("/getSch/{idG}") {

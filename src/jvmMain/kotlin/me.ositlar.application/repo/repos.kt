@@ -1,16 +1,18 @@
 package me.ositlar.application.repo
 
-import me.ositlar.application.repo.parser.SubjectInGroup
+import common.GroupSchedule
+import common.SubjectInGroup
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
 val subjectInGroupRepo = ListRepo<SubjectInGroup>()
-
+val groupSchedule = ListRepo<GroupSchedule>()
 fun createTestData() {
     //val route = "C:/6_sem_pp/parsing/src/sourse/65.html"
     //val file = FileReader(route).readText()
-    val htmlTable = Jsoup.connect("https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/65.htm").get()
-    val table = htmlTable.select("table")
+    val htmlData = Jsoup.connect("https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/65.htm").get()
+    val group = htmlData.select("p")[0].text().substringAfter(": ")
+    val table = htmlData.select("table")
     val typeWeekList = listOf("Нечётная", "Чётная")
     val weekdayList = listOf("Понедельник", "Вторник", "Среда",
         "Четверг", "Пятница", "Суббота", "Понедельник", "Вторник", "Среда",
@@ -43,6 +45,11 @@ fun createTestData() {
             }
         }
     }
+    groupSchedule.create(GroupSchedule(
+        group,
+        subjectInGroupRepo.read().toTypedArray()
+    )
+    )
 }
 
 fun extractSubject(cell: Element): Array<String> {

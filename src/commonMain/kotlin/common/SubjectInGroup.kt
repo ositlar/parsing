@@ -1,4 +1,4 @@
-package me.ositlar.application.repo.parser
+package common
 
 import kotlinx.serialization.Serializable
 
@@ -11,6 +11,4 @@ data class SubjectInGroup(
     val subject: String,
     val teacher: String,
     val place: String? = "-"
-
-
 )
