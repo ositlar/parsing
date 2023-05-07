@@ -22,7 +22,6 @@ fun main() {
 val app = FC<Props>("App") {
     HashRouter {
         QueryClientProvider {
-
             client = QueryClient()
             ReactHTML.label{+"РАСПИСАНИЕ"}
             ReactQueryDevtools { }

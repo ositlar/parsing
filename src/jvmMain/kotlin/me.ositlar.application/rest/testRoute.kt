@@ -11,8 +11,8 @@ fun Route.testRoute() {
         repoRoutes(subjectInGroupRepo)
         get {
             val subjectItems = subjectInGroupRepo.read()
-            val subjects = subjectItems.map { it.elem.subject }
-            call.respond(subjects)
+            //val subjects = subjectItems.map { it.elem.subject }
+            call.respond(subjectItems.map { it.elem.teacher }.toSet())
         }
     }
     route("/getSch/{idG}") {

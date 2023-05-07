@@ -3,20 +3,13 @@ package me.ositlar.application.repo
 import me.ositlar.application.repo.parser.SubjectInGroup
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
-import java.io.FileReader
 
 val subjectInGroupRepo = ListRepo<SubjectInGroup>()
 
 fun createTestData() {
-    val route = "C:/6_sem_pp/parsing/src/sourse/65.html"
-    val file = FileReader(route).readText()
-    val htmlTable = Jsoup.parse(file)
-    //val result = controller(htmlTable).toTypedArray()
-//    controller(htmlTable).apply {
-//        map {
-//            subjectInGroupRepo.create(it)
-//        }
-//    }
+    //val route = "C:/6_sem_pp/parsing/src/sourse/65.html"
+    //val file = FileReader(route).readText()
+    val htmlTable = Jsoup.connect("https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/65.htm").get()
     val table = htmlTable.select("table")
     val typeWeekList = listOf("Нечётная", "Чётная")
     val weekdayList = listOf("Понедельник", "Вторник", "Среда",
