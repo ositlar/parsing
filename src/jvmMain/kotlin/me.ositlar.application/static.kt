@@ -11,6 +11,10 @@ fun HTML.index() {
     head {
         title("WebApp")
         link {
+            rel = "stylesheet"
+            href = "style.css"
+        }
+        link {
             rel = "icon"
             href = "data:,"
         }

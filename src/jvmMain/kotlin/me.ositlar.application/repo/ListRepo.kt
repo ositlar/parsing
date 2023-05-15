@@ -40,5 +40,4 @@ class ListRepo<E>: Repo<E> {
 
     override fun delete(id: String): Boolean =
         list.remove(id) != null
-
 }
