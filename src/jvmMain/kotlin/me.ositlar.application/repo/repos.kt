@@ -2,6 +2,7 @@ package me.ositlar.application.repo
 
 import common.GroupSchedule
 import common.SubjectInGroup
+import org.bson.Document
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
@@ -58,7 +59,9 @@ fun createTestData() {
             subjectInGroupRepo.read().toSet().toTypedArray()
             )
         )
+
     }
+
 }
 
 fun extractSubject(cell: Element): Array<String> {
