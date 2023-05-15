@@ -26,4 +26,11 @@ fun Route.testRoute() {
                 )
         }
     }
+//    route ("/test") {
+//        repoRoutes(names)
+//        get {
+//            val refs = names.read()
+//            call.respond(refs)
+//        }
+//    }
 }
