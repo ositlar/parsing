@@ -10,7 +10,6 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import me.ositlar.application.repo.Repo
 
 inline fun <reified T : Any> Route.repoRoutes(
     repo: Repo<T>

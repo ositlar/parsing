@@ -1,26 +1,41 @@
 package me.ositlar.application.rest
 
-import Config.Config
+import common.GroupSchedule
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import me.ositlar.application.repo.collection
 import me.ositlar.application.repo.groupSchedule
 import org.bson.Document
+import org.litote.kmongo.eq
 
 fun Route.testRoute() {
-
-    route(Config.groupPath) {
+    route("/MamaMia/"){
+        repoRoutes(groupSchedule)
         get {
             val subjectItems = groupSchedule.read()
+            collection.insertOne(Document("group", subjectItems.first().elem.group).append("shedule", subjectItems.get(0).elem.schedule))
             //val subjects = subjectItems.map { it.elem.subject }
-            //Вообще не поня нахуй его тут добовлять
-            //2 - Нихуя не понятно что ты тут закидываешь
-            collection.insertOne(
-                Document("group", subjectItems.first().elem.group).append("shedule", subjectItems[0].elem.schedule)
-            )
-
-            call.respondText ("text")
+            call.respond(collection.find())
         }
     }
+    route("/getSch/{idG}/") {
+        get {
+            val idG = call.parameters["idG"]?: return@get call.respondText(
+                    "Missing or malformed group id",
+                    status = HttpStatusCode.BadRequest
+                )
+            val subjectItems = groupSchedule.read()
+            collection.insertOne(Document("group", subjectItems.first().elem.group).append("shedule", subjectItems.get(0).elem.schedule))
+            call.respond(collection.find(GroupSchedule::group eq idG))
+        }
+    }
+//    route ("/test") {
+//        repoRoutes(names)
+//        get {
+//            val refs = names.read()
+//            call.respond(refs)
+//        }
+//    }
 }

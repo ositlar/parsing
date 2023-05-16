@@ -2,12 +2,9 @@ package me.ositlar.application.repo
 
 import common.GroupSchedule
 import common.SubjectInGroup
-import org.bson.Document
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
-val subjectInGroupRepo = ListRepo<SubjectInGroup>()
-val groupSchedule = ListRepo<GroupSchedule>()
 val urls = mapOf(
     "20z" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/65.htm",
     //"20m" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/67.htm",

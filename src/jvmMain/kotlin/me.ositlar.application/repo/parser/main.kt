@@ -36,28 +36,28 @@ fun controller(file: Document): MutableList<SubjectInGroup> {
             for (coll in 1 until 6) {
                 val time = timeLessonList[coll-1]
                 val cell = table.select("tr")[rowIter].select("td")[coll]
-                    val subjectType = cell.text().substringBefore(".")
-                    val classroom = cell.text().substringAfter("а.")
-                    if (cell.text().contains("доц.")) {
-                        val teacher = cell.text().substringAfter("доц.").substringBefore("а.")
-                        val subject = cell.text().substringBefore("доц.").substringAfter(".")
-                            .substringBefore("- 1").substringBefore("-2")
-                        timeTable.add(SubjectInGroup(typeWeek, days, time, subjectType, subject, teacher, classroom))
-                    }
-                    else if (cell.text().contains("проф.")) {
-                        val teacher = cell.text().substringAfter("проф.").substringBefore("а.")
-                        val subject = cell.text().substringBefore("проф.").substringAfter(".")
-                            .substringBefore("- 1").substringBefore("-2")
-                        timeTable.add(SubjectInGroup(typeWeek, days, time, subjectType, subject, teacher, classroom))
-                    }
-                    else if (cell.text().contains("ст.пр.")){
-                        val teacher = cell.text().substringAfter("ст.пр.").substringBefore("а.")
-                        val subject = cell.text().substringBefore("ст.пр.").substringAfter(".")
-                            .substringBefore("- 1").substringBefore("-2")
-                        timeTable.add(SubjectInGroup(typeWeek, days, time, subjectType, subject, teacher, classroom))
-                    }
+                val subjectType = cell.text().substringBefore(".")
+                val classroom = cell.text().substringAfter("а.")
+                if (cell.text().contains("доц.")) {
+                    val teacher = cell.text().substringAfter("доц.").substringBefore("а.")
+                    val subject = cell.text().substringBefore("доц.").substringAfter(".")
+                        .substringBefore("- 1").substringBefore("-2")
+                    timeTable.add(SubjectInGroup(typeWeek, days, time, subjectType, subject, teacher, classroom))
+                }
+                else if (cell.text().contains("проф.")) {
+                    val teacher = cell.text().substringAfter("проф.").substringBefore("а.")
+                    val subject = cell.text().substringBefore("проф.").substringAfter(".")
+                        .substringBefore("- 1").substringBefore("-2")
+                    timeTable.add(SubjectInGroup(typeWeek, days, time, subjectType, subject, teacher, classroom))
+                }
+                else if (cell.text().contains("ст.пр.")){
+                    val teacher = cell.text().substringAfter("ст.пр.").substringBefore("а.")
+                    val subject = cell.text().substringBefore("ст.пр.").substringAfter(".")
+                        .substringBefore("- 1").substringBefore("-2")
+                    timeTable.add(SubjectInGroup(typeWeek, days, time, subjectType, subject, teacher, classroom))
                 }
             }
         }
-    return timeTable
     }
+    return timeTable
+}
