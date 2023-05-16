@@ -15,7 +15,6 @@ fun createTestData() {
     urls.forEach { (_, u) ->
         val htmlData = Jsoup.connect(u).get()
         val group = htmlData.select("p")[0].text().substringAfter(": ")
-
         val mutList: MutableList<SubjectInGroup> = mutableListOf()
         val table = htmlData.select("table")
         val typeWeekList = listOf("Нечётная", "Чётная")
