@@ -53,7 +53,8 @@ fun createTestData() {
                 )
             }
         }
-        collection.insertOne(Document("schedule", groupSchedule.schedule))
+
+        collection.insertOne(Document("schedule", groupSchedule.schedule.toList()))
     }
 }
 

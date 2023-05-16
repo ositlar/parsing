@@ -8,8 +8,6 @@ import org.litote.kmongo.json
 
 val mongoClient = MongoClients.create("mongodb://127.0.0.1:27017")
 val database = mongoClient.getDatabase("db")
-//val collection = database.getCollection<GroupSchedule>()
-// Документ надо закидывать в монго так
 
 
 
