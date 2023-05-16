@@ -2,6 +2,7 @@ package me.ositlar.application.repo
 
 import common.GroupSchedule
 import common.SubjectInGroup
+import org.bson.Document
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
@@ -12,9 +13,11 @@ val urls = mapOf(
     //"20v" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/62.htm"
 )
 fun createTestData() {
-    urls.forEach { (t, u) ->
+    urls.forEach { (_, u) ->
         val htmlData = Jsoup.connect(u).get()
         val group = htmlData.select("p")[0].text().substringAfter(": ")
+        val collection = database.getCollection(group)
+        val groupSchedule = GroupSchedule(group, arrayOf())
         val table = htmlData.select("table")
         val typeWeekList = listOf("Нечётная", "Чётная")
         val weekdayList = listOf("Понедельник", "Вторник", "Среда",
@@ -38,8 +41,7 @@ fun createTestData() {
                 val time = timeLessonList[coll-1]
                 val cell = table.select("tr")[rowIter].select("td")[coll]
                 val extractedData = extractSubject(cell)
-                subjectInGroupRepo.create(
-                    SubjectInGroup(
+                groupSchedule.addSubject(SubjectInGroup(
                         typeWeek,
                         days,
                         time,
@@ -51,14 +53,8 @@ fun createTestData() {
                 )
             }
         }
-        groupSchedule.create(GroupSchedule(
-            t,
-            subjectInGroupRepo.read().toSet().toTypedArray()
-            )
-        )
-
+        collection.insertOne(Document("schedule", groupSchedule.schedule))
     }
-
 }
 
 fun extractSubject(cell: Element): Array<String> {

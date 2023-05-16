@@ -1,23 +1,13 @@
 package me.ositlar.application.rest
 
-import common.GroupSchedule
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import me.ositlar.application.repo.collection
-import me.ositlar.application.repo.groupSchedule
-import org.bson.Document
-import org.litote.kmongo.eq
 
 fun Route.testRoute() {
     route("/MamaMia/"){
-        repoRoutes(groupSchedule)
         get {
-            val subjectItems = groupSchedule.read()
-            collection.insertOne(Document("group", subjectItems.first().elem.group).append("shedule", subjectItems.get(0).elem.schedule))
-            //val subjects = subjectItems.map { it.elem.subject }
-            call.respond(collection.find())
         }
     }
     route("/getSch/{idG}/") {
@@ -26,9 +16,6 @@ fun Route.testRoute() {
                     "Missing or malformed group id",
                     status = HttpStatusCode.BadRequest
                 )
-            val subjectItems = groupSchedule.read()
-            collection.insertOne(Document("group", subjectItems.first().elem.group).append("shedule", subjectItems.get(0).elem.schedule))
-            call.respond(collection.find(GroupSchedule::group eq idG))
         }
     }
 //    route ("/test") {

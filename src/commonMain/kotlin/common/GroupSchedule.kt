@@ -5,5 +5,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GroupSchedule(
      val group: String,
-     val schedule: Array<Item<SubjectInGroup>>
-)
+     val schedule: Array<SubjectInGroup>
+) {
+     fun addSubject(subjectInGroup: SubjectInGroup) =
+          this.schedule + subjectInGroup
+}
