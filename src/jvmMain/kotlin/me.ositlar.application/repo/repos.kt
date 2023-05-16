@@ -2,22 +2,21 @@ package me.ositlar.application.repo
 
 import common.GroupSchedule
 import common.SubjectInGroup
-import org.bson.Document
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 
 val urls = mapOf(
     "20z" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/65.htm",
-    //"20m" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/67.htm",
-    //"20p" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/68.htm",
-    //"20v" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/62.htm"
+    "20m" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/67.htm",
+    "20p" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/68.htm",
+    "20v" to "https://portal.omgups.ru/extranet/raspisanie/semester2_2022-2023/raspisanie_iatit/62.htm"
 )
 fun createTestData() {
     urls.forEach { (_, u) ->
         val htmlData = Jsoup.connect(u).get()
         val group = htmlData.select("p")[0].text().substringAfter(": ")
-        val collection = database.getCollection(group)
-        val groupSchedule = GroupSchedule(group, arrayOf())
+
+        val mutList: MutableList<SubjectInGroup> = mutableListOf()
         val table = htmlData.select("table")
         val typeWeekList = listOf("Нечётная", "Чётная")
         val weekdayList = listOf("Понедельник", "Вторник", "Среда",
@@ -41,7 +40,7 @@ fun createTestData() {
                 val time = timeLessonList[coll-1]
                 val cell = table.select("tr")[rowIter].select("td")[coll]
                 val extractedData = extractSubject(cell)
-                groupSchedule.addSubject(SubjectInGroup(
+                mutList.add(SubjectInGroup(
                         typeWeek,
                         days,
                         time,
@@ -54,7 +53,8 @@ fun createTestData() {
             }
         }
 
-        collection.insertOne(Document("schedule", groupSchedule.schedule.toList()))
+//        collection.insertOne(Document("schedule", groupSchedule.schedule.toList()))
+        collection.insertOne(GroupSchedule(group, mutList))
     }
 }
 

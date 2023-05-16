@@ -1,15 +1,19 @@
 package me.ositlar.application.rest
 
+import common.GroupSchedule
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import me.ositlar.application.repo.database
+import me.ositlar.application.repo.collection
+import org.litote.kmongo.eq
+import org.litote.kmongo.findOne
 
 fun Route.testRoute() {
     route("/MamaMia/"){
         get {
-            call.respond(database.getCollection("20з").find())
+            val data =  collection.findOne(GroupSchedule::group eq "20м")
+            call.respond(data!!)
         }
     }
     route("/getSch/{idG}/") {

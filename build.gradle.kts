@@ -68,7 +68,6 @@ kotlin {
                 implementation("org.litote.kmongo:kmongo-serialization:4.8.0")
                 implementation("org.litote.kmongo:kmongo-id-serialization:4.8.0")
                 implementation("org.json:json:20230227")
-                implementation("org.mongodb:mongodb-driver-sync:4.2.3")
             }
         }
         val jvmTest by getting {
