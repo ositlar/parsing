@@ -2,6 +2,7 @@ package component.lesson
 
 import Config
 import common.GroupSchedule
+import csstype.ClassName
 import csstype.Color
 import csstype.LineStyle.Companion.dashed
 import csstype.TextAlign
@@ -23,7 +24,6 @@ import tanstack.react.query.useQuery
 import tools.fetchText
 
 
-
 val CGroup = FC<Props>("Group") {
     var count = 0
     val selectQueryKey = arrayOf("Group").unsafeCast<QueryKey>()
@@ -40,7 +40,7 @@ val CGroup = FC<Props>("Group") {
     }
 
     h1 {
-         className = ClassName("nameGroup")
+        className = ClassName("nameGroup")
         +"Расписание группы:"
         +groupContainer.group
     }
@@ -49,18 +49,8 @@ val CGroup = FC<Props>("Group") {
             tbody {
                 val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
                 val days = listOf(
-                    "Понедельник",
-                    "Вторник",
-                    "Среда",
-                    "Четверг",
-                    "Пятница",
-                    "Суббота",
-                    "Понедельник",
-                    "Вторник",
-                    "Среда",
-                    "Четверг",
-                    "Пятница",
-                    "Суббота"
+                    "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
+                    "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
                 )
                 tr {
                     if (groupContainer.group.isNotEmpty()) {

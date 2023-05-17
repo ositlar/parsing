@@ -7,15 +7,13 @@ import react.Props
 import react.create
 import react.createContext
 import react.dom.client.createRoot
-import react.router.Route
-import react.router.Routes
+import react.dom.html.ReactHTML.button
 import react.router.dom.HashRouter
 import tanstack.query.core.QueryClient
 import tanstack.query.core.QueryKey
 import tanstack.react.query.QueryClientProvider
 import tanstack.react.query.devtools.ReactQueryDevtools
 import web.html.HTMLElement
-import react.router.dom.Link as Link
 
 val invalidateRepoKey = createContext<QueryKey>()
 
@@ -28,25 +26,10 @@ val app = FC<Props>("App") {
     HashRouter {
         QueryClientProvider {
             client = QueryClient()
-                nav {
-                    className = ClassName("navbar")
-                    button {
-                        className = ClassName("btn")
-                        Link {
-                            className = ClassName("btn")
-                            +"Группы"
-                            to = Config.groupsPath
-                        }
-                    }
-                }
-                    Routes {
-                        Route {
-                            path = Config.groupsPath
-                            element = CGroup.create()
-                        }
-                    }
 
-                    ReactQueryDevtools { }
+                CFlow {}
+
+            ReactQueryDevtools { }
 
         }
     }

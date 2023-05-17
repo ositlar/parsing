@@ -2,6 +2,7 @@ package me.ositlar.application.rest
 
 import Config
 import common.GroupSchedule
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -18,17 +19,26 @@ fun Route.testRoute() {
     route(Config.flowPath) {
         val serializer: KSerializer<GroupSchedule> = serializer()
         val listSerializer = ListSerializer(serializer)
+
+
         get {
             val collection = collection.find().json
             val listGroupSchedule = Json.decodeFromString(listSerializer, collection)
 
-            val groupsName = listGroupSchedule.map { it.group }.json
+            val groupsName = listGroupSchedule
+                .map { it.group.substring(0,2) }
+                .toSet()
+                .json
 
             call.respond(groupsName)
         }
-        get("GG/") {
-            val data = collection.findOne(GroupSchedule::group eq "20м")!!.json
-            call.respond(data)
+        get("{stream}"){
+            val stream = call.parameters["stream"] ?: call.respondText("No route found", status = HttpStatusCode.BadRequest)
+
+            val collection = collection.find(GroupSchedule::group eq stream)
+
+            call.respond(collection)
+
         }
     }
 
