@@ -1,4 +1,5 @@
 object Config{
-    val groupPath = "groups/"
+    val flowPath = "flow/"
+    val groupsPath = "groups/"
     val cathedralPath = "cathedra/"
 }

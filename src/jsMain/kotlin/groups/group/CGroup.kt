@@ -4,7 +4,6 @@ import Config
 import common.GroupSchedule
 import csstype.Color
 import csstype.LineStyle.Companion.dashed
-import csstype.LineStyle.Companion.solid
 import csstype.TextAlign
 import emotion.react.css
 import kotlinx.serialization.decodeFromString
@@ -14,7 +13,6 @@ import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
-import react.dom.html.ReactHTML.label
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
@@ -24,13 +22,15 @@ import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
 
-val CGroupContainer = FC<Props>("GroupContainer") {
+
+
+val CGroup = FC<Props>("Group") {
     var count = 0
     val selectQueryKey = arrayOf("Group").unsafeCast<QueryKey>()
 
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
-        fetchText(Config.groupPath)
+        fetchText(Config.flowPath)
     })
 
     val groupContainer: GroupSchedule = try {
@@ -38,6 +38,7 @@ val CGroupContainer = FC<Props>("GroupContainer") {
     } catch (e: Throwable) {
         GroupSchedule("null", mutableListOf())
     }
+
     h1 {
         +groupContainer.group
     }
@@ -87,7 +88,6 @@ val CGroupContainer = FC<Props>("GroupContainer") {
                             val scheduleArr = groupContainer.schedule
                             for (i in count..count + 4) {
                                 td {
-
                                     +"${scheduleArr[i].subjectType} "
                                     +"${scheduleArr[i].subject} "
                                     +"${scheduleArr[i].teacher} "
@@ -104,7 +104,6 @@ val CGroupContainer = FC<Props>("GroupContainer") {
                             count += 5
                         }
                     }
-
                 }
             }
         }

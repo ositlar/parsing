@@ -2,34 +2,36 @@ package me.ositlar.application.rest
 
 import Config
 import common.GroupSchedule
-import common.SubjectInGroup
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.serializer
 import me.ositlar.application.repo.collection
 import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
+import org.litote.kmongo.json
 
 fun Route.testRoute() {
-    route(Config.groupPath){
+    route(Config.flowPath) {
+        val serializer: KSerializer<GroupSchedule> = serializer()
+        val listSerializer = ListSerializer(serializer)
         get {
-            val data =  collection.findOne(GroupSchedule::group eq "20з")!!
+            val collection = collection.find().json
+            val listGroupSchedule = Json.decodeFromString(listSerializer, collection)
+
+            val groupsName = listGroupSchedule.map { it.group }.json
+
+            call.respond(groupsName)
+        }
+        get("GG/") {
+            val data = collection.findOne(GroupSchedule::group eq "20м")!!.json
             call.respond(data)
         }
     }
 
-    route(Config.cathedralPath) {
-        get {
-            val data = collection.find().toList()
-            val teachers: MutableMap<String, Array<SubjectInGroup>> = mutableMapOf()
-            data.forEach { group ->
-                group.schedule.forEach { sub ->
-                    teachers + Pair(sub.teacher, sub)
-                }
-            }
-            call.respond(teachers)
-        }
-    }
 
 //    route ("/test") {
 //        repoRoutes(names)

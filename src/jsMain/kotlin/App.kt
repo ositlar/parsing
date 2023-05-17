@@ -1,6 +1,6 @@
 @file:Suppress("CAST_NEVER_SUCCEEDS")
 
-import component.lesson.CGroupContainer
+import component.lesson.CFlow
 import kotlinx.browser.document
 import react.FC
 import react.Props
@@ -30,12 +30,12 @@ val app = FC<Props>("App") {
             client = QueryClient()
             Link{
                 +"Группы"
-                to = Config.groupPath
+                to = Config.flowPath
             }
             Routes{
                 Route{
-                    path = Config.groupPath
-                    element = CGroupContainer.create()
+                    path = Config.flowPath
+                    element = CFlow.create()
                 }
             }
 
