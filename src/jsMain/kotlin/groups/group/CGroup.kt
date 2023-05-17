@@ -40,6 +40,8 @@ val CGroup = FC<Props>("Group") {
     }
 
     h1 {
+         className = ClassName("nameGroup")
+        +"Расписание группы:"
         +groupContainer.group
     }
     div {
