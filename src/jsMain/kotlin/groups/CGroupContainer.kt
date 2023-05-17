@@ -12,6 +12,7 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
+import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.label
 import react.dom.html.ReactHTML.table
@@ -40,73 +41,71 @@ val CGroupContainer = FC<Props>("GroupContainer") {
     h1 {
         +groupContainer.group
     }
-    table {
-        tbody {
-            val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
-            val days = listOf(
-                "Понедельник",
-                "Вторник",
-                "Среда",
-                "Четверг",
-                "Пятница",
-                "Суббота",
-                "Понедельник",
-                "Вторник",
-                "Среда",
-                "Четверг",
-                "Пятница",
-                "Суббота"
-            )
-            tr {
-                if (groupContainer.group.isNotEmpty()) {
-                    th { +"Время:" }
-                    time.forEach {
-                        th { +it }
+    div {
+        table {
+            tbody {
+                val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
+                val days = listOf(
+                    "Понедельник",
+                    "Вторник",
+                    "Среда",
+                    "Четверг",
+                    "Пятница",
+                    "Суббота",
+                    "Понедельник",
+                    "Вторник",
+                    "Среда",
+                    "Четверг",
+                    "Пятница",
+                    "Суббота"
+                )
+                tr {
+                    if (groupContainer.group.isNotEmpty()) {
+                        th { +"Время:" }
+                        time.forEach {
+                            th { +it }
+                        }
                     }
                 }
-            }
-            css{
-                borderStyle = dashed
+                css {
+                    borderStyle = dashed
 
-            }
-            if (groupContainer.schedule.isNotEmpty()) {
-                days.forEach {
-                    if(count >= 30){
-                        label{
-                            +"НЕЧЕТНАЯ"
-                        }
-                    }
-                    tr {
-                        td {
-                            +it
-                            css {
-                                textAlign = TextAlign.left
-                                if (count >= 30) {
-                                    color = Color("Blue")
-                                }
-                            }
-                        }
-                        val scheduleArr = groupContainer.schedule
-                        for (i in count..count + 4) {
+                }
+                if (groupContainer.schedule.isNotEmpty()) {
+                    days.forEach {
+
+                        tr {
                             td {
-
-                                +"${scheduleArr[i].subjectType} "
-                                +"${scheduleArr[i].subject} "
-                                +"${scheduleArr[i].teacher} "
-                                +"${scheduleArr[i].place}  "
+                                +it
                                 css {
-                                    textAlign = TextAlign.center
+                                    textAlign = TextAlign.left
                                     if (count >= 30) {
                                         color = Color("Blue")
-
                                     }
                                 }
                             }
-                        }
-                        count += 5
-                    }
-                }
+                            val scheduleArr = groupContainer.schedule
+                            for (i in count..count + 4) {
+                                td {
 
+                                    +"${scheduleArr[i].subjectType} "
+                                    +"${scheduleArr[i].subject} "
+                                    +"${scheduleArr[i].teacher} "
+                                    +"${scheduleArr[i].place}  "
+                                    css {
+                                        textAlign = TextAlign.center
+                                        if (count >= 30) {
+                                            color = Color("Blue")
+
+                                        }
+                                    }
+                                }
+                            }
+                            count += 5
+                        }
+                    }
+
+                }
             }
         }
     }
