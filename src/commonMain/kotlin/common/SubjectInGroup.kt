@@ -11,4 +11,7 @@ data class SubjectInGroup(
     val subject: String,
     val teacher: String,
     val place: String? = "-"
-)
+) {
+    override fun toString() =
+        "${this.subjectType}${this.subject} - ${this.teacher} a.${this.place}"
+}

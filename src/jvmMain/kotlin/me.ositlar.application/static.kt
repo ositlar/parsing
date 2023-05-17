@@ -12,7 +12,7 @@ fun HTML.index() {
         title("WebApp")
         link {
             rel = "stylesheet"
-            href = "style.css"
+            href = "static/style.css"
         }
         link {
             rel = "icon"

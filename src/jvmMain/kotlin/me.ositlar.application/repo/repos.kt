@@ -53,8 +53,6 @@ fun createTestData() {
                 )
             }
         }
-
-//        collection.insertOne(Document("schedule", groupSchedule.schedule.toList()))
         collection.insertOne(GroupSchedule(group, mutList))
     }
 }
