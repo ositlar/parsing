@@ -2,13 +2,17 @@ package component.lesson
 
 import Config
 import common.GroupSchedule
+import kotlinext.js.asJsObject
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
+import react.dom.html.ReactHTML
+import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.table
+import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
 import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.tr
@@ -38,26 +42,28 @@ val CGroupContainer = FC<Props>("GroupContainer") {
     }
     //for хуйня, багаеться, не юзнаем
     table {
-        val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
-        val day = listOf(
-            "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
-        )
-        tr {
-            if (groupContainer.group.isNotEmpty()) {
-                th { +"Время:" }
-                time.forEach {
-                    th { +it }
+        tbody {
+            val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
+            val day = listOf(
+                "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
+            )
+            tr {
+                if (groupContainer.group.isNotEmpty()) {
+                    th { +"Время:" }
+                    time.forEach {
+                        th { +it }
+                    }
                 }
             }
-        }
-        day.forEach { it ->
+            day.forEach { it ->
             tr{
                 td{+it}
-//                for (i in 0..5){
-//                    td{
-//                        groupContainer.schedule[i]
-//                    }
-//                }
+                for (i in 0..5) {
+                        td {
+                            +groupContainer.group
+                        }
+                    }
+                }
             }
         }
     }
