@@ -28,19 +28,26 @@ val app = FC<Props>("App") {
     HashRouter {
         QueryClientProvider {
             client = QueryClient()
-            Link{
-                +"Группы"
-                to = Config.flowPath
-            }
-            Routes{
-                Route{
-                    path = Config.flowPath
-                    element = CFlow.create()
+                nav {
+                    className = ClassName("navbar")
+                    button {
+                        className = ClassName("btn")
+                        Link {
+                            className = ClassName("btn")
+                            +"Группы"
+                            to = Config.groupsPath
+                        }
+                    }
                 }
-            }
+                    Routes {
+                        Route {
+                            path = Config.groupsPath
+                            element = CGroup.create()
+                        }
+                    }
 
+                    ReactQueryDevtools { }
 
-            ReactQueryDevtools { }
         }
     }
 }
