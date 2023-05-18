@@ -1,6 +1,7 @@
 @file:Suppress("CAST_NEVER_SUCCEEDS")
 
 import component.lesson.CFlow
+import component.lesson.CGroups
 import kotlinx.browser.document
 import react.FC
 import react.Props
@@ -8,7 +9,6 @@ import react.create
 import react.createContext
 import react.dom.client.createRoot
 import react.dom.html.ReactHTML
-import react.dom.html.ReactHTML.button
 import react.router.Route
 import react.router.Routes
 import react.router.dom.HashRouter
@@ -31,7 +31,7 @@ val app = FC<Props>("App") {
         QueryClientProvider {
             client = QueryClient()
             ReactHTML.ul {
-                listOf("Flow", "Cathedra", "Teachers").map { tag ->
+                listOf("Flow", "Cathedra", "Teachers").forEach { tag ->
                     ReactHTML.li {
                         Link {
                             +tag
@@ -40,11 +40,13 @@ val app = FC<Props>("App") {
                     }
                 }
             }
+
             Routes{
-                Route{
+                Route {
                     path = Config.flowPath
                     element = CFlow.create()
                 }
+
             }
 
             ReactQueryDevtools { }
