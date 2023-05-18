@@ -14,14 +14,15 @@ import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
 
+external interface GroupsProps: Props{
+    var stramName: String
+}
 
-
-val CGroups = FC<Props>("Groups") { props ->
+val CGroups = FC< GroupsProps>("Groups") { props ->
     val selectQueryKey = arrayOf("Groups").unsafeCast<QueryKey>()
-    val streamName = useParams()["steamName"]
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
-        fetchText(Config.flowPath + streamName )
+        fetchText(Config.flowPath + props.stramName )
     })
 
     val groupsList: List<String> = try {
@@ -31,9 +32,11 @@ val CGroups = FC<Props>("Groups") { props ->
     }
 
    groupsList.forEach {
-       Link{
-           +it
-           to = it
+       div {
+           Link {
+               +it
+               to = it
+           }
        }
    }
 }

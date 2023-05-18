@@ -35,12 +35,6 @@ fun Application.config(isTest: Boolean) {
     }
     if (isTest) {
         createTestData()
-        //findData()
-        install(createApplicationPlugin("DelayEmulator") {
-            onCall {
-                delay(1000L)
-            }
-        })
     }
 }
 
