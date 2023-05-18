@@ -124,7 +124,9 @@ fun extractSubject(cell: Element): Array<String> {
         val subject = cell.text().substringBefore("ГОЛОВИН Д.В.").substringAfter(".")
             .substringBefore("- 1").substringBefore("-2")
         return (arrayOf(subjectType, classroom, teacher, subject))
-    } else {
+    } else if (cell.text().contains("Физкультура а.Сз13_")) {
         return (arrayOf("пр.", "Сз.17", "_", "Физкультура"))
+    } else {
+        return arrayOf("_", "_", "_", "_")
     }
 }
