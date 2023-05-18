@@ -22,6 +22,7 @@ import react.router.dom.Link
 import tanstack.query.core.QueryClient
 import tanstack.query.core.QueryKey
 import tanstack.react.query.QueryClientProvider
+import teachers.CListTeachers
 import web.html.HTMLElement
 
 val invalidateRepoKey = createContext<QueryKey>()
@@ -58,6 +59,10 @@ val app = FC<Props>("App") {
                 Route {
                     path = "${Config.flowPath}*"
                     element = CFlow.create()
+                }
+                Route{
+                    path = "${Config.teachersPath}*"
+                    element = CListTeachers.create()
                 }
 
             }
