@@ -34,11 +34,18 @@ fun Route.testRoute() {
             call.respond(groupsName)
         }
         get("{stream}"){
-            val stream = call.parameters["stream"] ?: call.respondText("No route found", status = HttpStatusCode.BadRequest)
+            val stream = call.parameters["stream"] as String
 
-            val collection = collection.find(GroupSchedule::group eq stream)
+            val collection = collection.find().json
+            val listGroupSchedule = Json.decodeFromString(listSerializer, collection)
+                .map { it.group }
+                .filter { it.startsWith(stream) }
 
-            call.respond(stream)
+
+            if (listGroupSchedule.isNotEmpty()) {
+                call.respond(listGroupSchedule)
+            }else
+                call.respondText("Stream is missing", status = HttpStatusCode.BadRequest)
 
         }
     }

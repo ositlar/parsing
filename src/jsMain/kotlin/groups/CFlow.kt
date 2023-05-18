@@ -1,6 +1,7 @@
 package component.lesson
 
 import Config
+import js.core.get
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
@@ -11,6 +12,7 @@ import react.dom.html.ReactHTML.div
 import react.router.Route
 import react.router.Routes
 import react.router.dom.Link
+import react.router.useParams
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
@@ -44,10 +46,8 @@ val CFlow = FC<Props>("Flow") { _ ->
     Routes {
         groupsList.forEach { stream ->
             Route {
-                path = "${Config.flowPath}$stream"
-                element = CGroups.create {
-                    streamName = stream
-                }
+                path = stream
+                element = CGroups.create()
             }
         }
     }
