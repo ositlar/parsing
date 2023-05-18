@@ -1,6 +1,7 @@
 @file:Suppress("CAST_NEVER_SUCCEEDS")
 
 import component.lesson.CFlow
+import component.lesson.CGroups
 import csstype.ClassName
 import kotlinx.browser.document
 import react.FC
@@ -65,6 +66,12 @@ val app = FC<Props>("App") {
                     element = CListTeachers.create()
                 }
 
+            }
+            Routes {
+                Route {
+                    path = ":streamName"
+                    element = CGroups.create()
+                }
             }
 
             div{
