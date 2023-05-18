@@ -65,7 +65,7 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
         if (inputText.isNotEmpty() && selectedTeacher == null) {
             select {
                 ref = selectRef
-                disabled = true
+
                 suggestions.take(1).forEach { suggestion ->
                     option {
                         +suggestion
@@ -73,21 +73,21 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
                 }
             }
         }
-        if (suggestions.isNotEmpty()) {
+        if (suggestions.isNotEmpty() && suggestions.first().length > 3) {
             button {
                 Link {
                     +"Вывести расписание"
-                    to = "test"
+                    to =  selectRef.current?.value ?: "Error"
                 }
             }
         }
     }
     Routes{
         Route{
-            path = "test"
-            element  = CTeacherTable.create ()
-               // this.teacherName = selectRef.current?.value ?: "Undefined"
-
+            path = selectRef.current?.value ?: "Error"
+            element  = CTeacherTable.create {
+                this.teacherName = selectRef.current?.value ?: "Undefined"
+            }
         }
     }
 }

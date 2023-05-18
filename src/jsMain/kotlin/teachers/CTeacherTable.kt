@@ -41,11 +41,13 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
     } catch (e: Throwable) {
         emptyList()
     }
-    groupsList.forEach {
+
+    groupsList.forEach{
         label{
-            it.values
+            it.keys.forEach {
+                +it
+            }
         }
     }
-
 }
 
