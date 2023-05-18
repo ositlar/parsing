@@ -1,6 +1,6 @@
 
 footer {
-  margin-top: 20%;
+  margin-top: 26%;
   width: auto;
   height: 260px;
   left: 0px;
@@ -67,7 +67,8 @@ footer {
   position: relative;
   width: 226px;
   height: 30px;
-  left: 1200px;
+  margin-left: 80%;
+/*  left: 1200px;*/
   top: 28px;
 
   font-style: normal;
@@ -86,7 +87,8 @@ footer {
   position: relative;
   width: 189px;
   height: 21px;
-  left: 1200px;
+  margin-left: 80%;
+  /*left: 1200px;*/
   top: 55px;
 
   text-decoration: none;
