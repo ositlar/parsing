@@ -6,13 +6,14 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
-import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.dom.html.ReactHTML.option
 import react.dom.html.ReactHTML.select
+import react.router.Route
+import react.router.Routes
 import react.router.dom.Link
 import react.useRef
 import react.useState
@@ -74,11 +75,19 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
                 }
             }
         }
-        button{
-            Link{
-                +"Вывести расписание"
-                to = selectRef.current?.value ?: "Error"
+        if (suggestions.isNotEmpty()) {
+            button {
+                Link {
+                    +"Вывести расписание"
+                    to = selectRef.current?.value ?: "Error"
+                }
             }
+        }
+    }
+    Routes{
+        Route{
+            path = selectRef.current?.value ?: "Error"
+            element
         }
     }
 }
