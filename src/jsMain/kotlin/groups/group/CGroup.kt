@@ -23,14 +23,18 @@ import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
 
+external interface GroupProps : Props {
+    var streamName: String
+    var groupName: String
+}
 
-val CGroup = FC<Props>("Group") {
+val CGroup = FC<GroupProps>("Group") {props ->
     var count = 0
     val selectQueryKey = arrayOf("Group").unsafeCast<QueryKey>()
 
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
-        fetchText(Config.flowPath)
+        fetchText(Config.flowPath + "${props.streamName}/" + props.groupName)
     })
 
     val groupContainer: GroupSchedule = try {

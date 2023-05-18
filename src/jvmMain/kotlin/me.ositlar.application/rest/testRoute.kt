@@ -21,7 +21,7 @@ fun Route.testRoute() {
         val listSerializer = ListSerializer(serializer)
 
 
-        get {
+        get {//Выдает все потоки
             val collection = collection.find().json
             val listGroupSchedule = Json.decodeFromString(listSerializer, collection)
 
@@ -33,7 +33,7 @@ fun Route.testRoute() {
 
             call.respond(groupsName)
         }
-        get("{stream}"){
+        get("{stream}"){// Выдает все группы
             val stream = call.parameters["stream"] as String
 
             val collection = collection.find().json
@@ -47,6 +47,14 @@ fun Route.testRoute() {
             }else
                 call.respondText("Stream is missing", status = HttpStatusCode.BadRequest)
 
+        }
+        get("{stream}/{groupName}"){
+            val groupName = call.parameters["groupName"]?.decodeURLQueryComponent(charset = Charsets.UTF_8)
+
+            val group = collection.findOne (GroupSchedule::group eq groupName) ?: call
+                .respondText("group name is empty", status = HttpStatusCode.BadRequest)
+
+            call.respond(group.json)
         }
     }
 

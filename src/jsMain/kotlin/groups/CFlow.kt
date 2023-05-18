@@ -20,7 +20,6 @@ import tools.fetchText
 val CFlow = FC<Props>("Flow") { _ -> // Компонент который выводит все потоки
     val selectQueryKey = arrayOf("Flow").unsafeCast<QueryKey>()
 
-    var streamName by useState("")
 
     val querySteams = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
         fetchText(Config.flowPath)
@@ -33,21 +32,20 @@ val CFlow = FC<Props>("Flow") { _ -> // Компонент который выв
         emptyList()
     }
 
-    groupsList.forEach { str ->
+    groupsList.forEach { stream ->
         div {
             Link {
-                to = str
-                +str
+                to = stream
+                +stream
             }
         }
     }
-    groupsList.forEach { str ->
-
+    groupsList.forEach { stream ->
         Routes {
             Route {
-                path = str
+                path = "$stream/*"
                 element = CGroups.create {
-                    this.stramName = str
+                    this.streamName = stream
                 }
             }
         }
