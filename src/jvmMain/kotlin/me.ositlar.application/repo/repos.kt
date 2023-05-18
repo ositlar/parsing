@@ -114,10 +114,17 @@ fun extractSubject(cell: Element): Array<String> {
             .substringBefore("- 1").substringBefore("-2")
         return arrayOf(subjectType, classroom, teacher, subject)
     }
-    else {
+    else if (cell.text().contains("ст.пр.")) {
         val teacher = cell.text().substringAfter("ст.пр.").substringBefore("а.")
         val subject = cell.text().substringBefore("ст.пр.").substringAfter(".")
             .substringBefore("- 1").substringBefore("-2")
         return arrayOf(subjectType, classroom, teacher, subject)
+    } else if (cell.text().contains("ГОЛОВИН Д.В.")) {
+        val teacher = "ГОЛОВИН Д.В."
+        val subject = cell.text().substringBefore("ГОЛОВИН Д.В.").substringAfter(".")
+            .substringBefore("- 1").substringBefore("-2")
+        return (arrayOf(subjectType, classroom, teacher, subject))
+    } else {
+        return (arrayOf("пр.", "Сз.17", "_", "Физкультура"))
     }
 }
