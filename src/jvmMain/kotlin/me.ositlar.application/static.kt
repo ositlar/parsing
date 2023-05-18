@@ -26,10 +26,6 @@ fun HTML.index() {
             rel = "stylesheet"
             href = "static/footer.css"
         }
-        link {
-            rel = "stylesheet"
-            href = "static/header.css"
-        }
     }
     body {
         div {
