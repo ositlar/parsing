@@ -37,9 +37,19 @@ fun Route.teachersRoute() {
         }
         get ("{teacher}") {
             val receivedTeacher =
-                call.parameters["teacher"] ?:
-                    call.respondText("No teacher found", status = HttpStatusCode.BadRequest)
-            call.respond(listGroupSchedule.map { it.schedule.filter { it.teacher == receivedTeacher } }.json)
+                call.parameters["teacher"] ?.decodeURLQueryComponent(charset = Charsets.UTF_8)
+            val teachersLessons = listGroupSchedule
+                .flatMap { groupSchedule ->
+                    groupSchedule.schedule.filter { subjectInGroup ->
+                        subjectInGroup.teacher.contains(receivedTeacher!!)
+                    }
+                        .map { subjectInGroup ->
+                            mapOf("group" to groupSchedule.group, "lesson" to subjectInGroup)
+                        }
+                }
+                .json
+
+            call.respond(teachersLessons)
         }
     }
 }
