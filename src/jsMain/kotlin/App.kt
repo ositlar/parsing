@@ -65,8 +65,6 @@ val app = FC<Props>("App") {
 
             }
 
-            ReactQueryDevtools { }
-
             div{
                 className = ClassName("wrapper")
                 main {

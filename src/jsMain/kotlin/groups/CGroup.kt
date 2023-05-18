@@ -28,7 +28,7 @@ external interface GroupProps : Props {
     var groupName: String
 }
 
-val CGroup = FC<GroupProps>("Group") {props ->
+val CGroup = FC<GroupProps>("Group") { props ->
     var count = 0
     val selectQueryKey = arrayOf("Group").unsafeCast<QueryKey>()
 
@@ -84,24 +84,30 @@ val CGroup = FC<GroupProps>("Group") {props ->
                             val scheduleArr = groupContainer.schedule
                             for (i in count..count + 4) {
                                 td {
-                                    +"${scheduleArr[i].subjectType} "
-                                    +"${scheduleArr[i].subject} "
-                                    +"${scheduleArr[i].teacher} "
-                                    +"${scheduleArr[i].place}  "
-                                    css {
-                                        textAlign = TextAlign.center
-                                        if (count >= 30) {
-                                            color = Color("Blue")
+                                    if (scheduleArr[i].subject != "_") {
+                                        +"${scheduleArr[i].subjectType} "
+                                        +"${scheduleArr[i].subject} "
+                                        +"${scheduleArr[i].teacher} "
+                                        +"${scheduleArr[i].place}  "
+                                    } else {
+                                        +" - "
+                                    }
+                                }
+                                css {
+                                    textAlign = TextAlign.center
+                                    if (count >= 30) {
+                                        color = Color("Blue")
 
-                                        }
                                     }
                                 }
                             }
-                            count += 5
+
                         }
+                        count += 5
                     }
                 }
             }
         }
     }
 }
+
