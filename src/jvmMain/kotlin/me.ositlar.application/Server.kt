@@ -8,12 +8,13 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
 import kotlinx.coroutines.delay
 import me.ositlar.application.repo.createTestData
+import me.ositlar.application.rest.teachersRoute
 import me.ositlar.application.rest.testRoute
 
 fun main() {
     embeddedServer(
         Netty,
-        port = 8443,
+        port = 8080,
         host = "127.0.0.1",
         watchPaths = listOf("classes")
     ) {
@@ -46,5 +47,6 @@ fun Application.config(isTest: Boolean) {
 fun Application.rest() {
     routing {
         testRoute()
+        teachersRoute()
     }
 }

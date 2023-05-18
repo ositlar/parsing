@@ -1,5 +1,6 @@
 object Config{
-    val flowPath = "flow/"
-    val groupsPath = "groups/"
-    val cathedralPath = "cathedra/"
+    const val flowPath = "flow/"
+    const val groupsPath = "groups/"
+    const val cathedralPath = "cathedra/"
+    const val teachersPath = "teacher/"
 }
