@@ -1,11 +1,11 @@
 package teachers
 
 import Config
+import component.lesson.CTeacherTable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
-import react.FC
-import react.Props
+import react.*
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.input
@@ -15,8 +15,6 @@ import react.dom.html.ReactHTML.select
 import react.router.Route
 import react.router.Routes
 import react.router.dom.Link
-import react.useRef
-import react.useState
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
@@ -79,15 +77,17 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
             button {
                 Link {
                     +"Вывести расписание"
-                    to = selectRef.current?.value ?: "Error"
+                    to = "test"
                 }
             }
         }
     }
     Routes{
         Route{
-            path = selectRef.current?.value ?: "Error"
-            element
+            path = "test"
+            element  = CTeacherTable.create ()
+               // this.teacherName = selectRef.current?.value ?: "Undefined"
+
         }
     }
 }
