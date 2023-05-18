@@ -30,6 +30,7 @@ fun Route.testRoute() {
                 .toSet()
                 .json
 
+
             call.respond(groupsName)
         }
         get("{stream}"){
@@ -37,7 +38,7 @@ fun Route.testRoute() {
 
             val collection = collection.find(GroupSchedule::group eq stream)
 
-            call.respond(collection)
+            call.respond(stream)
 
         }
     }

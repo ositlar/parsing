@@ -15,39 +15,38 @@ import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
 
+
 val CFlow = FC<Props>("Flow") { _ ->
     val selectQueryKey = arrayOf("Flow").unsafeCast<QueryKey>()
 
-    val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
+
+    val querySteams = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
         fetchText(Config.flowPath)
     })
 
+
     val groupsList: List<String> = try {
-        Json.decodeFromString(query.data!!)
+        Json.decodeFromString(querySteams.data!!)
     } catch (e: Throwable) {
         emptyList()
     }
 
-    val groupsSet = groupsList.map { it.substring(0, 2) }.toSet()
 
 
-    div {
-        groupsSet.forEach { flow ->
-
+    groupsList.forEach { stream ->
+        div {
             Link {
-                to = Config.flowPath + flow
-                +"$flow           "
+                to = stream
+                +stream
             }
-
         }
     }
-
     Routes {
-        groupsSet.forEach { flow ->
+        groupsList.forEach { stream ->
             Route {
-                path = Config.groupsPath +flow
+                path = "${Config.flowPath}$stream"
                 element = CGroups.create {
-                    this.stream = flow
+                    streamName = stream
                 }
             }
         }

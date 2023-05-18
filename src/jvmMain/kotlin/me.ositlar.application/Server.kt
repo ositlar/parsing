@@ -14,7 +14,7 @@ import me.ositlar.application.rest.testRoute
 fun main() {
     embeddedServer(
         Netty,
-        port = 8080,
+        port = 8443,
         host = "127.0.0.1",
         watchPaths = listOf("classes")
     ) {
