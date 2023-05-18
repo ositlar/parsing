@@ -44,21 +44,21 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     val (selectedTeacher, setSelectedTeacher) = useState<String?>(null)
 
     label{+"Введите имя преподователя"}
-        input {
-            type = InputType.text
-            ref = inputRef
-            value = inputText
-            onChange = { event ->
-                val newInputText = event.target.value
-                setInputText(newInputText)
-                setSuggestions(groupsList.filter { it.startsWith(newInputText, ignoreCase = true) })
-            }
-            onKeyDown = { event ->
-                if (event.asDynamic().keyCode == 13 && suggestions.isNotEmpty()) {
-                    setInputText(suggestions.first())
-                }
+    input {
+        type = InputType.text
+        ref = inputRef
+        value = inputText
+        onChange = { event ->
+            val newInputText = event.target.value
+            setInputText(newInputText)
+            setSuggestions(groupsList.filter { it.startsWith(newInputText, ignoreCase = true) })
+        }
+        onKeyDown = { event ->
+            if (event.asDynamic().keyCode == 13 && suggestions.isNotEmpty()) {
+                setInputText(suggestions.first())
             }
         }
+    }
 
 
     div {
