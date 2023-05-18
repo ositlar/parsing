@@ -133,7 +133,6 @@ button::after, ::before{
     margin: 10px 60px;
 
     display: inline-block;
-
     list-style-type: none;
 }
 
@@ -141,6 +140,9 @@ legend{
     width: max-content;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 44px;
+    margin-bottom: 44px;
+
     left: 50px;
     border: 2px;
     border-style: solid;
@@ -175,5 +177,45 @@ legend{
 
 .flow__li a:hover:after,
 .flow__li a:focus:after{
+    width: 100%;
+}
+
+.groupsToFlow__li{
+    width: max-content;
+    height: auto;
+    margin: 10px 30px;
+
+    display: inline-block;
+    list-style-type: none;
+}
+
+.groupsToFlow__li a{
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    position:relative;
+}
+
+.groupsToFlow__li a:after{
+    background-color: black;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0%;
+    left:50%;
+    position:absolute;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+    -webkit-transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    transform:translateX(-50%);
+}
+
+.groupsToFlow__li a:hover:after,
+.groupsToFlow__li a:focus:after{
     width: 100%;
 }

@@ -1,17 +1,18 @@
 package component.lesson
 
 import Config
+import csstype.ClassName
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
 import react.create
-import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.legend
+import react.dom.html.ReactHTML.li
 import react.router.Route
 import react.router.Routes
 import react.router.dom.Link
-import react.useState
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
@@ -32,15 +33,20 @@ val CFlow = FC<Props>("Flow") { _ -> // Компонент который выв
         emptyList()
     }
 
-    groupsList.forEach { stream ->
-        div {
-            Link {
-                to = stream
-                +stream
+    legend {
+        groupsList.forEach { str ->
+            li {
+                className = ClassName("flow__li")
+                Link {
+                    to = str
+                    +str
+                }
             }
         }
     }
+
     groupsList.forEach { stream ->
+
         Routes {
             Route {
                 path = "$stream/*"
@@ -51,3 +57,4 @@ val CFlow = FC<Props>("Flow") { _ -> // Компонент который выв
         }
     }
 }
+

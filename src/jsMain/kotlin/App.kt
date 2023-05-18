@@ -1,9 +1,6 @@
 @file:Suppress("CAST_NEVER_SUCCEEDS")
 
 import component.lesson.CFlow
-import component.lesson.CGroups
-import react.dom.html.ReactHTML.header
-
 import csstype.ClassName
 import kotlinx.browser.document
 import react.FC
@@ -14,6 +11,7 @@ import react.dom.client.createRoot
 import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.footer
+import react.dom.html.ReactHTML.header
 import react.dom.html.ReactHTML.li
 import react.dom.html.ReactHTML.main
 import react.dom.html.ReactHTML.nav
@@ -24,7 +22,6 @@ import react.router.dom.Link
 import tanstack.query.core.QueryClient
 import tanstack.query.core.QueryKey
 import tanstack.react.query.QueryClientProvider
-import tanstack.react.query.devtools.ReactQueryDevtools
 import web.html.HTMLElement
 
 val invalidateRepoKey = createContext<QueryKey>()
@@ -95,11 +92,11 @@ val app = FC<Props>("App") {
                             }
                         }
                         div{
-                            className = ClassName("footer__bottom")
-                            +"© 2023"
+                            className = ClassName("line")
                         }
                         div{
-                            className = ClassName("line")
+                            className = ClassName("footer__bottom")
+                            +"© 2023"
                         }
                     }
                 }
