@@ -1,0 +1,156 @@
+
+footer {
+  position: absolute;
+  width: 1520px;
+  height: 260px;
+  left: 0px;
+  top: 764px;
+
+  background: #05A88D;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1 0 auto;
+
+}
+
+.footer {
+  flex: 0 0 auto;
+  background-color: #05A88D;
+}
+
+.logo {
+  position: absolute;
+  width: 131px;
+  height: 34px;
+  left: 40px;
+  top: 44px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  text-decoration: none;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  text-transform: capitalize;
+
+  color: #F1E67D;
+}
+
+.text {
+  position: absolute;
+  width: 437px;
+  height: 46px;
+  left: 40px;
+  top: 100px;
+
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+
+  color: #FFFFFF;
+
+}
+
+.contact {
+  position: absolute;
+  width: 160px;
+  height: 17px;
+  left: 1241px;
+  top: 58px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+
+  color: #FFFFFF;
+}
+
+.phone {
+  position: absolute;
+  width: 226px;
+  height: 30px;
+  left: 1186px;
+  top: 91px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+
+  color: #F1E67D;
+}
+
+.address {
+  position: absolute;
+  width: 189px;
+  height: 21px;
+  left: 1213px;
+  top: 137px;
+
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+
+  color: #FFFFFF;
+}
+
+.line {
+  position: absolute;
+  width: 1360px;
+  height: 0px;
+  left: 40px;
+  top: 174px;
+
+  border: 1px solid #FFFFFF;
+}
+
+.footer__bottom {
+  position: absolute;
+  width: 198px;
+  height: 14px;
+  left: 40px;
+  top: 210px;
+
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  text-transform: capitalize;
+
+  color: #FFFFFF;
+
+}

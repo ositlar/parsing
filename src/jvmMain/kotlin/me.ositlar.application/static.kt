@@ -11,12 +11,20 @@ fun HTML.index() {
     head {
         title("WebApp")
         link {
+            rel = "icon"
+            href = "data:,"
+        }
+        link {
             rel = "stylesheet"
             href = "static/style.css"
         }
         link {
-            rel = "icon"
-            href = "data:,"
+            rel = "stylesheet"
+            href = "static/header.css"
+        }
+        link {
+            rel = "stylesheet"
+            href = "static/footer.css"
         }
         link {
             rel = "stylesheet"
