@@ -7,8 +7,12 @@ import react.Props
 import react.create
 import react.createContext
 import react.dom.client.createRoot
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.button
+import react.router.Route
+import react.router.Routes
 import react.router.dom.HashRouter
+import react.router.dom.Link
 import tanstack.query.core.QueryClient
 import tanstack.query.core.QueryKey
 import tanstack.react.query.QueryClientProvider
@@ -26,8 +30,22 @@ val app = FC<Props>("App") {
     HashRouter {
         QueryClientProvider {
             client = QueryClient()
-
-                CFlow {}
+            ReactHTML.ul {
+                listOf("Flow", "Cathedra", "Teachers").map { tag ->
+                    ReactHTML.li {
+                        Link {
+                            +tag
+                            to = tag.lowercase()
+                        }
+                    }
+                }
+            }
+            Routes{
+                Route{
+                    path = Config.flowPath
+                    element = CFlow.create()
+                }
+            }
 
             ReactQueryDevtools { }
 

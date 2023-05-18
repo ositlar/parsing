@@ -20,7 +20,7 @@ val CGroups = FC<GroupsProps>("Groups") { props ->
     val selectQueryKey = arrayOf("Groups").unsafeCast<QueryKey>()
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
-        fetchText(Config.flowPath + props.stream + "/")
+        fetchText(Config.flowPath + props.stream )
     })
 
     val groupsList: List<String> = try {
