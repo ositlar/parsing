@@ -7,8 +7,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
 import react.*
+import react.dom.html.ReactHTML
+import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.input
+import react.dom.html.ReactHTML.label
+import react.dom.html.ReactHTML.option
+import react.dom.html.ReactHTML.select
 import react.router.Route
 import react.router.Routes
 import react.router.dom.Link
@@ -38,7 +43,7 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     val (suggestions, setSuggestions) = useState<List<String>>(emptyList())
 
 
-
+    label{+"Введите фамилию"}
     input {
         className = ClassName("inputTeacher")
         placeholder = "Search.."
@@ -63,24 +68,19 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     }
 
     div {
-        if (inputText.isNotEmpty() ) {
-            suggestions.take(3).forEach { suggestion ->
-                div {
-                    Link {
+        if (inputText.isNotEmpty()) {
+            select {
+                suggestions.take(1).forEach { suggestion ->
+                    option{
                         +suggestion
-                        to = suggestion
                     }
-                    onClick = {
-                        setInputText(suggestion)
-                        inputRef.current?.focus()
-                    }
-                    if (inputText.length > 4){
-                        Routes{
-                            Route{
-                                path = suggestion
-                                element = CTeacherTable.create()
-                            }
-                        }
+                }
+            }
+            button{
+                if(suggestions.first().isNotEmpty()) {
+                    Link {
+                        +"Получить расписание"
+                        to = suggestions.first()
                     }
                 }
             }

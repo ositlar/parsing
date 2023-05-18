@@ -14,6 +14,7 @@ import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
+import react.dom.html.ReactHTML.label
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
@@ -28,7 +29,6 @@ external interface TeacherProps : Props {
 }
 
 val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
-    var count = 0
     val selectQueryKey = arrayOf("CTeacherTable").unsafeCast<QueryKey>()
 
 
@@ -36,77 +36,16 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
         fetchText(Config.teachersPath + props.teacherName)
     })
 
-    val groupContainer: GroupSchedule = try {
+    val groupsList: List<Map<String, GroupSchedule>> = try {
         Json.decodeFromString(query.data!!)
     } catch (e: Throwable) {
-        GroupSchedule("null", mutableListOf())
+        emptyList()
     }
-
-    h1 {
-        className = ClassName("nameGroup")
-        +"Расписание группы:"
-        +groupContainer.group
-    }
-    div {
-        table {
-            tbody {
-                val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
-                val days = listOf(
-                    "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
-                    "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
-                )
-                tr {
-                    if (groupContainer.group.isNotEmpty()) {
-                        th { +"Время:" }
-                        time.forEach {
-                            th { +it }
-                        }
-                    }
-                }
-                css {
-                    borderStyle = dashed
-
-                }
-                if (groupContainer.schedule.isNotEmpty()) {
-                    days.forEach {
-
-                        tr {
-                            td {
-                                +it
-                                css {
-                                    textAlign = TextAlign.left
-                                    if (count >= 30) {
-                                        color = Color("Blue")
-                                    }
-                                }
-                            }
-                            val scheduleArr = groupContainer.schedule
-                            for (i in count..count + 4) {
-                                td {
-                                    if (scheduleArr[i].subject != "_") {
-                                        +"${scheduleArr[i].subjectType} "
-                                        +"${scheduleArr[i].subject} "
-                                        +"${scheduleArr[i].teacher} "
-                                        +"${scheduleArr[i].place}  "
-                                    } else {
-                                        +" - "
-                                    }
-                                }
-                                css {
-                                    textAlign = TextAlign.center
-                                    if (count >= 30) {
-                                        color = Color("Blue")
-
-                                    }
-                                }
-                            }
-
-                        }
-                        count += 5
-                    }
-                }
-            }
+    groupsList.forEach {
+        label{
+            it.values
         }
     }
+
 }
 
