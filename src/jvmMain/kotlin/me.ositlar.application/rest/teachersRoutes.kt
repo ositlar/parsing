@@ -2,6 +2,7 @@ package me.ositlar.application.rest
 
 import Config
 import common.GroupSchedule
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -15,10 +16,10 @@ import org.litote.kmongo.json
 fun Route.teachersRoute() {
     val serializer: KSerializer<GroupSchedule> = serializer()
     val listSerializer = ListSerializer(serializer)
+    val listGroupSchedule =
+        Json.decodeFromString(listSerializer, collection.find().json)
     route(Config.teachersPath) {
         get {
-            val listGroupSchedule =
-                Json.decodeFromString(listSerializer, collection.find().json)
             val teachers = listGroupSchedule
                 .map { it.schedule.map { it.teacher }.toSet() }
                 .flatten()
@@ -33,6 +34,12 @@ fun Route.teachersRoute() {
                 }
                 .json
             call.respond(teachers)
+        }
+        get ("{teacher}") {
+            val receivedTeacher =
+                call.parameters["teacher"] ?:
+                    call.respondText("No teacher found", status = HttpStatusCode.BadRequest)
+            call.respond(listGroupSchedule.map { it.schedule.filter { it.teacher == receivedTeacher } }.json)
         }
     }
 }
