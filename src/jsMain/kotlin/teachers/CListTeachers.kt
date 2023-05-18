@@ -2,6 +2,7 @@ package teachers
 
 import Config
 import component.lesson.CTeacherTable
+import csstype.ClassName
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
@@ -39,6 +40,9 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
 
 
     input {
+        className = ClassName("inputTeacher")
+        placeholder = "Search.."
+
         type = InputType.text
         ref = inputRef
         value = inputText

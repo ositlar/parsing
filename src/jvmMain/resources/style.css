@@ -224,3 +224,24 @@ legend{
 .groupsToFlow__li a:focus:after{
     width: 100%;
 }
+
+.inputTeacher[type=text]{
+    width: 170px;
+    margin-left: 50px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url(searchicon.png);
+    background-size: 25px 25px;
+    background-position: 10px 8px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width .4s ease-in-out;
+    transition: width .4s ease-in-out;
+}
+
+.inputTeacher[type=text]:focus{
+    width: 20%;
+}
