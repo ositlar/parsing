@@ -44,8 +44,8 @@ val app = FC<Props>("App") {
                     className = ClassName("menu")
                     ReactHTML.ul {
                         className = ClassName("menu__ul")
-                        listOf("Flow", "Cathedra", "Teachers").forEach { tag ->
-                            ReactHTML.li {
+                        listOf("Cathedra", "Flow", "Teachers").forEach { tag ->
+                            li {
                                 className = ClassName("menu__li")
                                 Link {
                                     +tag
@@ -83,11 +83,11 @@ val app = FC<Props>("App") {
                             className = ClassName("footer__right")
                             div{
                                 className = ClassName("contact")
-                                +"Для связи с нами"
+                                +""
                             }
                             div{
                                 className = ClassName("phone")
-                                +"Кафедра Аису или деканат ИАТИТа"
+                                +"Здесь могла быть ваша реклама"
                             }
                             div{
                                 className = ClassName("address")

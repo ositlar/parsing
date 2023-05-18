@@ -125,3 +125,55 @@ button::after, ::before{
     font-size: 48px;
     margin-left: 100px;
 }
+
+
+.flow__li{
+    width: max-content;
+    height: auto;
+    margin: 10px 60px;
+
+    display: inline-block;
+
+    list-style-type: none;
+}
+
+legend{
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50px;
+    border: 2px;
+    border-style: solid;
+    border-radius: 12px;
+}
+
+.flow__li a{
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    position:relative;
+}
+
+.flow__li a:after{
+    background-color: black;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0%;
+    left:50%;
+    position:absolute;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+    -webkit-transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    transform:translateX(-50%);
+}
+
+.flow__li a:hover:after,
+.flow__li a:focus:after{
+    width: 100%;
+}
