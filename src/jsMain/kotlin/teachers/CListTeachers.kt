@@ -1,25 +1,25 @@
 package teachers
 
 import Config
-import component.lesson.CTeacherTable
+import csstype.ClassName
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
-import react.*
+import react.FC
+import react.Props
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.dom.html.ReactHTML.option
 import react.dom.html.ReactHTML.select
-import react.router.Route
-import react.router.Routes
 import react.router.dom.Link
+import react.useRef
+import react.useState
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
 import tools.fetchText
 import web.html.HTMLInputElement
-import web.html.HTMLSelectElement
 import web.html.InputType
 
 
@@ -37,17 +37,23 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     }
 
     val inputRef = useRef<HTMLInputElement>()
-    val selectRef = useRef<HTMLSelectElement>()
 
     val (inputText, setInputText) = useState("")
     val (suggestions, setSuggestions) = useState<List<String>>(emptyList())
-    val (selectedTeacher, setSelectedTeacher) = useState<String?>(null)
 
-    label{+"Введите имя преподователя"}
+
+    label{
+        +"Введите фамилию:"
+        className = ClassName("labelSirname")
+    }
     input {
+        className = ClassName("inputTeacher")
+        placeholder = "Search.."
+
         type = InputType.text
         ref = inputRef
         value = inputText
+
         onChange = { event ->
             val newInputText = event.target.value
             setInputText(newInputText)
@@ -57,36 +63,31 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
             if (event.asDynamic().keyCode == 13 && suggestions.isNotEmpty()) {
                 setInputText(suggestions.first())
             }
+
         }
+
+
     }
 
-
     div {
-        if (inputText.isNotEmpty() && selectedTeacher == null) {
+        if (inputText.isNotEmpty()) {
             select {
-                ref = selectRef
-
+                disabled = true
+                className = ClassName("select")
                 suggestions.take(1).forEach { suggestion ->
-                    option {
+                    option{
                         +suggestion
                     }
                 }
             }
-        }
-        if (suggestions.isNotEmpty() && suggestions.first().length > 3) {
-            button {
-                Link {
-                    +"Вывести расписание"
-                    to =  selectRef.current?.value ?: "Error"
+            button{
+                className = ClassName("btn")
+                if(suggestions.first().isNotEmpty()) {
+                    Link {
+                        +"Получить расписание"
+                        to = suggestions.first()
+                    }
                 }
-            }
-        }
-    }
-    Routes{
-        Route{
-            path = selectRef.current?.value ?: "Error"
-            element  = CTeacherTable.create {
-                this.teacherName = selectRef.current?.value ?: "Undefined"
             }
         }
     }

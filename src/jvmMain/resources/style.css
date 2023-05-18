@@ -52,37 +52,46 @@ td {
     justify-content: end;
 }
 
-button {
+
+.btn a{
+    margin: 10px;
+
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+
+
+.btn {
   position: relative;
   border: none;
-  font-size: 18px;
   transition: color 0.5s, transform 0.2s, background-color 0.2s;
   outline: none;
   border-radius: 3px;
-  margin: 0 10px;
-  padding: 16px 16px;
+  margin: 10px;
+
+  padding: 16px 18px;
   border: 3px solid transparent;
 }
 
-button:active{
+.btn:active{
   transform: translateY(3px);
 }
 
-button::after, ::before{
+.btn::after, ::before{
   border-radius: 3px;
 }
 
 .btn {
   background-color: transparent;
-  text-decoration: none;
-  color: rgb(27, 27, 32);
+  color: #1b1b20;
   border: none;
   overflow: hidden;
   box-shadow: none;
 }
-
 .btn:hover {
-  color: white;
+  color: #e6e6e6;
 }
 
 .btn::before {
@@ -95,11 +104,9 @@ button::after, ::before{
   border: 3px solid #1b1b20;
   transition: opacity 0.3s, border 0.3s;
 }
-
 .btn:hover::before {
   opacity: 0;
 }
-
 .btn::after {
   content: "";
   position: absolute;
@@ -107,7 +114,7 @@ button::after, ::before{
   left: 0;
   width: 200px;
   height: 200px;
-  background-color: #494958;
+  background-color: #05a88d;
   border-color: transparent;
   border-radius: 50%;
   transform: translate(-10px, -70px) scale(0.1);
@@ -115,7 +122,6 @@ button::after, ::before{
   z-index: -1;
   transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
 }
-
 .btn:hover::after {
   opacity: 1;
   transform-origin: 100px 100px;
@@ -227,7 +233,7 @@ legend{
 
 .inputTeacher[type=text]{
     width: 170px;
-    margin-left: 50px;
+    margin-left: 20px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -245,3 +251,24 @@ legend{
 .inputTeacher[type=text]:focus{
     width: 20%;
 }
+
+.labelSirname{
+    margin: 20px 20px 20px 40px;
+}
+
+.select {
+    /*display: block;*/
+    padding: 5px 10px;
+    margin: 20px 20px 20px 40px;
+    max-width: 170px;
+    width: 100%;
+    position: relative;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+
+
