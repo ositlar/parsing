@@ -15,7 +15,7 @@ import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
 import org.litote.kmongo.json
 
-fun Route.testRoute() {
+fun Route.groupsRoute() {
     route(Config.flowPath) {
         val serializer: KSerializer<GroupSchedule> = serializer()
         val listSerializer = ListSerializer(serializer)

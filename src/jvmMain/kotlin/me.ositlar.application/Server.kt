@@ -6,10 +6,9 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
-import kotlinx.coroutines.delay
 import me.ositlar.application.repo.createTestData
 import me.ositlar.application.rest.teachersRoute
-import me.ositlar.application.rest.testRoute
+import me.ositlar.application.rest.groupsRoute
 
 fun main() {
     embeddedServer(
@@ -40,7 +39,7 @@ fun Application.config(isTest: Boolean) {
 
 fun Application.rest() {
     routing {
-        testRoute()
+        groupsRoute()
         teachersRoute()
     }
 }
