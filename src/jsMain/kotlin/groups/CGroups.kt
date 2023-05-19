@@ -34,7 +34,9 @@ val CGroups = FC<GroupsProps>("Groups") { props ->
     } catch (e: Throwable) {
         emptyList()
     }
-    legend{
+
+     legend{
+        className = ClassName("legend")
         groupsList.forEach { group ->
             li {
                 className = ClassName("groupsToFlow__li")
@@ -45,6 +47,7 @@ val CGroups = FC<GroupsProps>("Groups") { props ->
             }
         }
     }
+
 
     groupsList.forEach { group ->
         Routes {

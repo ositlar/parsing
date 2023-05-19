@@ -1,10 +1,10 @@
 
 footer {
-  margin-top: 26%;
+  margin-top: 25%;
   width: auto;
-  height: 260px;
+  height: 20%;
   left: 0px;
-  top: 764px;
+  /*top: 764px;*/
 
   background: #05A88D;
 }
@@ -29,7 +29,7 @@ footer {
   width: 437px;
   height: 46px;
   left: 40px;
-  top: 100px;
+  top: 5px;
 
   font-style: normal;
   font-weight: 300;
@@ -43,45 +43,6 @@ footer {
 
 }
 
-.contact {
-  width: 160px;
-  height: 17px;
-  left: 1241px;
-  top: 58px;
-
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-
-  color: #FFFFFF;
-}
-
-.phone {
-  position: relative;
-  width: 226px;
-  height: 30px;
-  margin-left: 80%;
-/*  left: 1200px;*/
-  top: 28px;
-
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-
-  color: #F1E67D;
-}
 
 .address {
   position: relative;
@@ -89,7 +50,7 @@ footer {
   height: 21px;
   margin-left: 80%;
   /*left: 1200px;*/
-  top: 55px;
+  top: -30px;
 
   text-decoration: none;
   font-style: normal;
@@ -109,7 +70,7 @@ footer {
   height: 0px;
   margin-left: auto;
   margin-right: auto;
-  top: 100px;
+  top: -18px;
   border: 1px solid #FFFFFF;
 }
 
@@ -122,11 +83,11 @@ footer {
   width: 198px;
   height: 14px;
   left: 92px;
-  top: 120px;
+  top: -3px;
 
   font-style: normal;
   font-weight: 300;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 14px;
   display: flex;
   align-items: center;

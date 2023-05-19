@@ -91,14 +91,6 @@ val app = FC<Props>("App") {
                         div {
                             className = ClassName("footer__right")
                             div{
-                                className = ClassName("contact")
-                                +""
-                            }
-                            div{
-                                className = ClassName("phone")
-                                +"Здесь могла быть ваша реклама"
-                            }
-                            div{
                                 className = ClassName("address")
                                 +"Omsk, Карла Маркса просп., 35"
                             }

@@ -44,7 +44,6 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     val (suggestions, setSuggestions) = useState<List<String>>(emptyList())
     val (selectedTeacher, setSelectedTeacher) = useState<String?>(null)
 
-
     label {
         +"Введите фамилию:"
         className = ClassName("labelSirname")
