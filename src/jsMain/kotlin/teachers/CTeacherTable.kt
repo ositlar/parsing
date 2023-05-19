@@ -38,4 +38,3 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
         }
     }
 }
-

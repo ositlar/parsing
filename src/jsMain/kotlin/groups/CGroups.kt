@@ -35,7 +35,7 @@ val CGroups = FC<GroupsProps>("Groups") { props ->
         emptyList()
     }
 
-     legend{
+    legend{
         className = ClassName("legend")
         groupsList.forEach { group ->
             li {

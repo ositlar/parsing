@@ -34,18 +34,18 @@ val CFlow = FC<Props>("Flow") { _ -> // Компонент который выв
     }
 
 
-        legend {
-            className = ClassName("legend")
-            groupsList.forEach { str ->
-                li {
-                    className = ClassName("flow__li")
-                    Link {
-                        to = str
-                        +str
-                    }
+    legend {
+        className = ClassName("legend")
+        groupsList.forEach { str ->
+            li {
+                className = ClassName("flow__li")
+                Link {
+                    to = str
+                    +str
                 }
             }
         }
+    }
 
 
     groupsList.forEach { stream ->
@@ -60,4 +60,3 @@ val CFlow = FC<Props>("Flow") { _ -> // Компонент который выв
         }
     }
 }
-
