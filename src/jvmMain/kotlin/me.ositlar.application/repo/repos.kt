@@ -68,22 +68,23 @@ fun createTestData() {
         val timeLessonList = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00",
             "13:55 - 15:25", "15:40 - 17:10") // список с промежутками времени с парами
         for (rowIter in 2 until 14) {
-            val days: String = if (rowIter <=8) {
-                weekdayList[rowIter-2]
+            val days = if (rowIter <=8) {
+                rowIter-2
             } else {
-                weekdayList[rowIter-8]
+                rowIter-8
             }
             val i = if (rowIter > 6) {
                 1
             } else {
                 0
             }
-            val typeWeek = typeWeekList[i]
+            val typeWeek = i
             for (coll in 1 until 6) {
-                val time = timeLessonList[coll-1]
+                val time = coll-1
                 val cell = table.select("tr")[rowIter].select("td")[coll]
                 val extractedData = extractSubject(cell)
                 mutList.add(SubjectInGroup(
+                    group,
                     typeWeek,
                     days,
                     time,

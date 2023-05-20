@@ -32,7 +32,7 @@ fun Route.teachersRoute() {
                 .map {
                     "$it."
                 }
-                .json
+                //.json
             call.respond(teachers)
         }
         get ("{teacher}") {
@@ -44,7 +44,7 @@ fun Route.teachersRoute() {
                         subjectInGroup.teacher.contains(receivedTeacher!!)
                     }
                         .map { subjectInGroup ->
-                            mapOf("group" to groupSchedule.group, "lesson" to subjectInGroup)
+                            mapOf(groupSchedule.group to subjectInGroup)
                         }
                 }
                 .json

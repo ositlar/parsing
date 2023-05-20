@@ -32,32 +32,20 @@ fun Route.facultyRoute() {
                         listOfTeachersAiSU.contains(subjectInGroup.teacher.trim())
                     }
                         .map { subjectInGroup ->
-                            mapOf("teacher" to subjectInGroup.teacher, "lesson" to TeacherLesson(
+                            TeacherLesson(
                                 subjectInGroup.typeWeek,
                                 subjectInGroup.dayOfWeek,
                                 subjectInGroup.time,
                                 subjectInGroup.subjectType,
                                 subjectInGroup.place,
-                                groupSchedule.group
-                            ))
+                                groupSchedule.group,
+                                subjectInGroup.teacher
+                            )
                         }
                 }
-                .groupBy { it.keys }
-                .json
+                //.groupBy { it.keys }
+                //.json
             call.respond(facultyScheduleAiSU)
-//            val facultyScheduleAiSU = listOfTeachersAiSU
-//                .forEach { teacherAiSU ->
-//                    listGroupSchedule.flatMap { groupSchedule ->
-//                        groupSchedule.schedule.filter { subjectInGroup ->
-//                            teacherAiSU.contains(subjectInGroup.teacher.trim())
-//                        }
-//                            .map { subjectInGroup ->
-//                                mapOf("teacher" to subjectInGroup.teacher, "lesson" to subjectInGroup)
-//                            }
-//                    }
-//                }
-//                .json
-//            call.respond(facultyScheduleAiSU)
         }
     }
 }

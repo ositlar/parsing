@@ -4,9 +4,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SubjectInGroup(
-    val typeWeek: String,
-    val dayOfWeek: String,
-    val time: String,
+    val group: String,
+    val typeWeek: Int,
+    val dayOfWeek: Int,
+    val time: Int,
     val subjectType: String? = "-",
     val subject: String,
     val teacher: String,

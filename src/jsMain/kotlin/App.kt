@@ -61,11 +61,12 @@ val app = FC<Props>("App") {
                     path = "${Config.flowPath}*"
                     element = CFlow.create()
                 }
+            }
+            Routes {
                 Route{
                     path = "${Config.teachersPath}*"
                     element = CListTeachers.create()
                 }
-
             }
             Routes {
                 Route {
