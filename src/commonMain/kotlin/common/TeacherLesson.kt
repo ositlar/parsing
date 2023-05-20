@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TeacherLesson(
-    val typeWeek: Int,
     val dayOfWeek: Int,
     val time: Int,
     val subjectType: String? = "-",

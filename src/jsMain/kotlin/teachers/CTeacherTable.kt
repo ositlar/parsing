@@ -29,7 +29,6 @@ external interface TeacherProps : Props {
 
 val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
     val selectQueryKey = arrayOf("CTeacherTable").unsafeCast<QueryKey>()
-    var count = 0
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
         fetchText(Config.teachersPath + props.teacherName)
@@ -45,7 +44,6 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
         "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
         "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
     )
-    val typeWeek = listOf("Чётная", "Нечётная")
 
     h1 {
         className = ClassName("nameGroup")

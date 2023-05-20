@@ -33,7 +33,6 @@ fun Route.facultyRoute() {
                     }
                         .map { subjectInGroup ->
                             TeacherLesson(
-                                subjectInGroup.typeWeek,
                                 subjectInGroup.dayOfWeek,
                                 subjectInGroup.time,
                                 subjectInGroup.subjectType,

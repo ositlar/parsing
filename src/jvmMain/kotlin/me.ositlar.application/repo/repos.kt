@@ -85,7 +85,6 @@ fun createTestData() {
                 val extractedData = extractSubject(cell)
                 mutList.add(SubjectInGroup(
                     group,
-                    typeWeek,
                     days,
                     time,
                     extractedData[0],
