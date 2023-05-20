@@ -7,12 +7,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
 import react.*
-import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.dom.html.ReactHTML.option
+import react.dom.html.ReactHTML.p
 import react.dom.html.ReactHTML.select
+import react.dom.html.ReactHTML.span
 import react.router.Route
 import react.router.Routes
 import react.router.dom.Link
@@ -84,15 +85,22 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
             }
         }
         if (suggestions.isNotEmpty()) {
-            button {
+            p{
                 className = ClassName("btn")
                 Link {
+                    span{
+                        +"→"
+                    }
                     +"Вывести расписание"
                     to = selectRef.current?.value ?: "Error"
+                    span{
+                        +"←"
+                    }
                 }
             }
         }
     }
+
     Routes {
         Route {
             path = selectRef.current?.value ?: "Error"
