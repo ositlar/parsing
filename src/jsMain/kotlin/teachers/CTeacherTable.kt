@@ -35,7 +35,7 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
         fetchText(Config.teachersPath + props.teacherName)
     })
 
-    val groupsList: List<Map<String, SubjectInGroup>> = try {
+    val groupsList: List<SubjectInGroup> = try {
         Json.decodeFromString(query.data!!)
     } catch (e: Throwable) {
         emptyList()
@@ -80,9 +80,7 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
                         for (timeCount in 0..4) {
                             td {
                                 val sub = groupsList
-                                    .map { it.values.toList() }
-                                    .flatten()
-                                    .find { it.dayOfWeek ==  days.indexOf(day) && it.time == timeCount }
+                                    .firstOrNull { it.dayOfWeek ==  index && it.time == timeCount }
                                 if (sub != null) {
                                     +sub.group
                                     +" "
