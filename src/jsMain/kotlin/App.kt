@@ -2,7 +2,6 @@
 
 import Cathedra.CCathedra
 import component.lesson.CFlow
-import component.lesson.CGroups
 import csstype.ClassName
 import kotlinx.browser.document
 import react.FC
@@ -62,26 +61,15 @@ val app = FC<Props>("App") {
                     path = "${Config.flowPath}*"
                     element = CFlow.create()
                 }
-            }
-            Routes {
                 Route {
                     path = "${Config.teachersPath}*"
                     element = CListTeachers.create()
                 }
-            }
-            Routes {
-                Route {
-                    path = ":streamName"
-                    element = CGroups.create()
-                }
-            }
-            Routes {
                 Route {
                     path = "${Config.cathedralPath}*"
                     element = CCathedra.create()
                 }
             }
-
 
             footer {
                 className = ClassName("footer")
