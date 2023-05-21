@@ -70,7 +70,7 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                     }
                 }
 
-                facultyScheduleAiSU.keys.forEach { name ->
+                facultyScheduleAiSU.keys.sorted().forEach { name ->
                     tr {
                         days.forEachIndexed { index, _ ->
                             td {
@@ -86,10 +86,9 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                                                 + " - "
                                             }
                                             else{
-                                                +"${stp.teacher} "
                                                 +"${stp.group} "
                                                 +"${stp.subjectType} "
-                                                +"${stp.place} "
+                                                +"${stp.place?.substring(0..5)} "
                                             }
                                         }
                                     }
