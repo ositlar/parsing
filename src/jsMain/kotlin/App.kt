@@ -1,5 +1,6 @@
 @file:Suppress("CAST_NEVER_SUCCEEDS")
 
+import Cathedra.CCathedra
 import component.lesson.CFlow
 import component.lesson.CGroups
 import csstype.ClassName
@@ -71,6 +72,12 @@ val app = FC<Props>("App") {
                 Route {
                     path = ":streamName"
                     element = CGroups.create()
+                }
+            }
+            Routes {
+                Route {
+                    path = "${Config.cathedralPath}*"
+                    element = CCathedra.create()
                 }
             }
 

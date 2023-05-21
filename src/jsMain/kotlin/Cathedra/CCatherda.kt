@@ -1,7 +1,7 @@
 package Cathedra
 
 import Config
-import common.GroupSchedule
+import common.TeacherLesson
 import component.lesson.GroupProps
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -19,9 +19,10 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
         fetchText(Config.cathedralPath)
     })
 
-    val facultyScheduleAiSU: GroupSchedule = try {
+    val facultyScheduleAiSU: Map<String, List<TeacherLesson>> = try {
         Json.decodeFromString(query.data!!)
     } catch (e: Throwable) {
-        GroupSchedule("null", mutableListOf())
+        emptyMap()
     }
+
 }
