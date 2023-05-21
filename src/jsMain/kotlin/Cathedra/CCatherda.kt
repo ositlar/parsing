@@ -4,6 +4,8 @@ import Config
 import common.TeacherLesson
 import component.lesson.GroupProps
 import csstype.ClassName
+import csstype.NamedColor
+import emotion.react.css
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
@@ -84,6 +86,7 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                                 } else {
                                     for (timeCount in 0..4) {
                                        val stp =  facultyScheduleAiSU[name]?.firstOrNull { it.dayOfWeek == index && it.time == timeCount }
+
                                         tr{
                                             className = ClassName("tdCathedraText")
                                             if (stp == null){
@@ -93,6 +96,14 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                                                 +"${stp.group} "
                                                 +"${stp.subjectType} "
                                                 +"${stp.place?.substring(0..5)} "
+                                            }
+                                            if(timeCount in 1 .. 4){
+                                                css{
+                                                    color = NamedColor.black
+                                                }
+                                            }else{
+                                                css {
+                                                }
                                             }
                                         }
                                     }

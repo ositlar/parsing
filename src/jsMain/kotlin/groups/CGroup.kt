@@ -52,6 +52,11 @@ val CGroup = FC<GroupProps>("Group") { props ->
         +"Расписание группы:"
         +groupSchedule.group
     }
+    button {
+        className = ClassName("btnChange")
+        +"Изменить"
+    }
+
     div {
         table {
             tbody {
@@ -111,11 +116,6 @@ val CGroup = FC<GroupProps>("Group") { props ->
                     }
                 }
             }
-        }
-    }
-    div{
-        button{
-            +"Изменить"
         }
     }
 }

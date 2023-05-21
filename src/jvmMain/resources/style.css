@@ -31,6 +31,7 @@ table{
 th{
     border: 2px;
     border-style: solid;
+    border-collapse: collapse;
 }
 
 td{
@@ -39,12 +40,14 @@ td{
     border-color: #000000;
     text-align: center;
     padding: 5px;
+    border-collapse: collapse;
 }
 
 .tdTd {
     border: 2px;
     border-style: solid;
     border-color: #000000;
+    border-collapse: collapse;
 }
 
 .tdTimeCathedra{
@@ -54,18 +57,30 @@ td{
     border-left: 1px;
     border-top: 1px;
     border-bottom: 1px;
+    border-collapse: collapse;
 }
 
+.btnChange{
+    position: relative;
+    left: 80%;
+    margin: 20px;
+}
 
-.tdCathedraText{
+.css-0{
     width: 28px;
     height: 50px;
     font-size: 8px;
-    padding-top: none;
-    padding-bottom: none;
-    border-left: 1px;
-    border-top: 1px;
-    border-bottom: 1px;
+    display: table-cell;
+    border-collapse: collapse;
+}
+
+.css-5cm1aq{
+    width: 28px;
+    height: 50px;
+    font-size: 8px;
+    display: table-cell;
+    border-left: solid 1px;
+    border-collapse: collapse;
 }
 
 .nameTeacher{
