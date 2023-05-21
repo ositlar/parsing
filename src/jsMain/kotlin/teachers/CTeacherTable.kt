@@ -51,7 +51,7 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
         +"Расписание преподавателя: "
         p{
             className = ClassName("teacherName")
-            +props.teacherName
+            +props.teacherName.lowercase()
         }
     }
     div {

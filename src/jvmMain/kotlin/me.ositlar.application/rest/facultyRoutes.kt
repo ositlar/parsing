@@ -42,8 +42,8 @@ fun Route.facultyRoute() {
                             )
                         }
                 }
-                //.groupBy { it.keys }
-                //.json
+                .groupBy { it.teacher }
+                .json
             call.respond(facultyScheduleAiSU)
         }
     }
