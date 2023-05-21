@@ -23,7 +23,6 @@ import web.html.HTMLInputElement
 import web.html.HTMLSelectElement
 import web.html.InputType
 
-
 val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент который выводит всех преподователей
     val selectQueryKey = arrayOf("ListTeachers").unsafeCast<QueryKey>()
 
@@ -41,7 +40,7 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     val selectRef = useRef<HTMLSelectElement>()
 
     val (inputText, setInputText) = useState("")
-    val (suggestions, setSuggestions) = useState<List<String>>(emptyList())
+    var (suggestions, setSuggestions) = useState<List<String>>(emptyList())
 
     label {
         +"Введите фамилию:"
@@ -58,6 +57,10 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
             val newInputText = event.target.value
             setInputText(newInputText)
             setSuggestions(groupsList.filter { it.startsWith(newInputText, ignoreCase = true) })
+
+            if (event.target.value.isEmpty()){
+                setSuggestions(emptyList())
+            }
         }
         onKeyDown = { event ->
             if (event.asDynamic().keyCode == 13 && suggestions.isNotEmpty()) {
@@ -108,4 +111,3 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
         }
     }
 }
-

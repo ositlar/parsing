@@ -7,6 +7,7 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
 import me.ositlar.application.repo.createTestData
+import me.ositlar.application.rest.facultyRoute
 import me.ositlar.application.rest.groupsRoute
 import me.ositlar.application.rest.teachersRoute
 
@@ -41,5 +42,6 @@ fun Application.rest() {
     routing {
         groupsRoute()
         teachersRoute()
+        facultyRoute()
     }
 }
