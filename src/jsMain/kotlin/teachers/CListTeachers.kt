@@ -40,7 +40,7 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     val selectRef = useRef<HTMLSelectElement>()
 
     val (inputText, setInputText) = useState("")
-    var (suggestions, setSuggestions) = useState<List<String>>(emptyList())
+    val (suggestions, setSuggestions) = useState<List<String>>(emptyList())
 
     label {
         +"Введите фамилию:"
