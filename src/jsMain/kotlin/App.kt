@@ -43,11 +43,12 @@ val app = FC<Props>("App") {
                     className = ClassName("menu")
                     ReactHTML.ul {
                         className = ClassName("menu__ul")
-                        listOf("Cathedra", "Flow", "Teachers").forEach { tag ->
+                        val names = listOf("Кафедра", "Группы", "Преподаватели")
+                        listOf("Cathedra", "Flow", "Teachers").forEachIndexed { index, tag ->
                             li {
                                 className = ClassName("menu__li")
                                 Link {
-                                    +tag
+                                    +names[index]
                                     to = tag.lowercase()
                                 }
                             }
