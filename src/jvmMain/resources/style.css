@@ -41,6 +41,12 @@ td {
     padding: 5px;
 }
 
+.tdTimeCatherda{
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+}
+
 .tableGroup {
     width: auto;
     margin: 20px;
