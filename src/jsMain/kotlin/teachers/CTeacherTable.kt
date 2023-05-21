@@ -14,6 +14,7 @@ import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
+import react.dom.html.ReactHTML.p
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
@@ -47,8 +48,11 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
 
     h1 {
         className = ClassName("nameGroup")
-        +"Расписание преподавателя:"
-        +props.teacherName
+        +"Расписание преподавателя: "
+        p{
+            className = ClassName("teacherName")
+            +props.teacherName
+        }
     }
     div {
         table {

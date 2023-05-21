@@ -14,7 +14,6 @@ import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.footer
 import react.dom.html.ReactHTML.header
 import react.dom.html.ReactHTML.li
-import react.dom.html.ReactHTML.main
 import react.dom.html.ReactHTML.nav
 import react.router.Route
 import react.router.Routes
@@ -39,7 +38,7 @@ val app = FC<Props>("App") {
             client = QueryClient()
             header {
                 className = ClassName("header")
-                nav{
+                nav {
                     className = ClassName("menu")
                     ReactHTML.ul {
                         className = ClassName("menu__ul")
@@ -56,14 +55,14 @@ val app = FC<Props>("App") {
                 }
             }
 
-            Routes{
+            Routes {
                 Route {
                     path = "${Config.flowPath}*"
                     element = CFlow.create()
                 }
             }
             Routes {
-                Route{
+                Route {
                     path = "${Config.teachersPath}*"
                     element = CListTeachers.create()
                 }
@@ -75,35 +74,30 @@ val app = FC<Props>("App") {
                 }
             }
 
-            div{
-                className = ClassName("wrapper")
-                main {
-                    className = ClassName("main")
-                    footer{
-                        className = ClassName("footer")
-                        div{
-                            className = ClassName("footer__left")
-                            div {
-                                className = ClassName("text")
-                                +"Разработано студентами группы 20з: "
-                                +"Кондратьев, Кадыков, Куриляк"
-                            }
-                        }
-                        div {
-                            className = ClassName("footer__right")
-                            div{
-                                className = ClassName("address")
-                                +"Omsk, Карла Маркса просп., 35"
-                            }
-                        }
-                        div{
-                            className = ClassName("line")
-                        }
-                        div{
-                            className = ClassName("footer__bottom")
-                            +"© 2023"
-                        }
+
+            footer {
+                className = ClassName("footer")
+                div {
+                    className = ClassName("footer__left")
+                    div {
+                        className = ClassName("text")
+                        +"Разработано студентами группы 20з: "
+                        +"Кондратьев, Кадыков, Куриляк"
                     }
+                }
+                div {
+                    className = ClassName("footer__right")
+                    div {
+                        className = ClassName("address")
+                        +"Omsk, Карла Маркса просп., 35"
+                    }
+                }
+                div {
+                    className = ClassName("line")
+                }
+                div {
+                    className = ClassName("footer__bottom")
+                    +"© 2023"
                 }
             }
         }
