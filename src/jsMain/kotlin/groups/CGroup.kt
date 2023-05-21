@@ -77,6 +77,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
 
                         tr {
                             td {
+                                className = ClassName("tdAny")
                                 +it
                                 css {
                                     textAlign = TextAlign.left
@@ -88,6 +89,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
                             val scheduleArr = groupContainer.schedule
                             for (i in count..count + 4) {
                                 td {
+                                    className = ClassName("tdAny")
                                     if (scheduleArr[i].subject != "_") {
                                         +"${scheduleArr[i].subjectType} "
                                         +"${scheduleArr[i].subject} "

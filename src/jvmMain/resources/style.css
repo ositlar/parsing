@@ -33,7 +33,7 @@ th{
     border-style: solid;
 }
 
-td {
+td{
     border: 2px;
     border-style: solid;
     border-color: #000000;
@@ -41,10 +41,35 @@ td {
     padding: 5px;
 }
 
-.tdTimeCatherda{
+.tdTd {
+    border: 2px;
+    border-style: solid;
+    border-color: #000000;
+}
+
+.tdTimeCathedra{
     writing-mode: vertical-rl;
     text-orientation: mixed;
     transform: rotate(180deg);
+    border-left: 1px;
+    border-top: 1px;
+    border-bottom: 1px;
+}
+
+
+.tdCathedraText{
+    width: 28px;
+    height: 50px;
+    font-size: 8px;
+    padding-top: none;
+    padding-bottom: none;
+    border-left: 1px;
+    border-top: 1px;
+    border-bottom: 1px;
+}
+
+.nameTeacher{
+    border-style: none;
 }
 
 .tableGroup {

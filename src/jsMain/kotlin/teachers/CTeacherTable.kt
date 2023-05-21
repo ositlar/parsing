@@ -68,6 +68,7 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
                 }
                 days.forEachIndexed { index, day ->
                     tr {
+                        className = ClassName("tdAny")
                         td {
                             +day
                             css {
