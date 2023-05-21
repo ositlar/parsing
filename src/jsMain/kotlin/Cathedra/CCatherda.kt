@@ -3,6 +3,7 @@ package Cathedra
 import Config
 import common.TeacherLesson
 import component.lesson.GroupProps
+import csstype.ClassName
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
@@ -57,13 +58,42 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                                 time.forEach { time ->
                                     td {
                                         +time
+                                        className = ClassName("tdTimeCatherda")
                                     }
                                 }
                             }
-                        }
-                        else{
-                            td{
+                        } else {
+                            td {
                                 +"ФИО Преподователя"
+                            }
+                        }
+                    }
+                }
+
+                facultyScheduleAiSU.keys.forEach { name ->
+                    tr {
+                        days.forEachIndexed { index, _ ->
+                            td {
+                                if (index == 6) {
+                                    td {
+                                        +name
+                                    }
+                                } else {
+                                    for (timeCount in 0..4) {
+                                       val stp =  facultyScheduleAiSU[name]?.firstOrNull { it.dayOfWeek == index && it.time == timeCount }
+                                        td{
+                                            if (stp == null){
+                                                + " - "
+                                            }
+                                            else{
+                                                +"${stp.teacher} "
+                                                +"${stp.group} "
+                                                +"${stp.subjectType} "
+                                                +"${stp.place} "
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
