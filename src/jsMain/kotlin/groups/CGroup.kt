@@ -12,7 +12,7 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
-import react.dom.html.ReactHTML.button
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.table
@@ -20,6 +20,7 @@ import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
 import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.tr
+import react.router.dom.Link
 import react.useState
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useQuery
@@ -52,9 +53,18 @@ val CGroup = FC<GroupProps>("Group") { props ->
         +"Расписание группы:"
         +groupSchedule.group
     }
-    button {
+    ReactHTML.p {
         className = ClassName("btnChange")
-        +"Изменить"
+        Link {
+            ReactHTML.span {
+                +"→"
+            }
+            +"Изменить"
+//            to = selectRef.current?.value ?: "Error"
+            ReactHTML.span {
+                +"←"
+            }
+        }
     }
 
     div {
