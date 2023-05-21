@@ -1,67 +1,56 @@
-package component.lesson
+package groups
 
-import Config
 import common.GroupSchedule
 import csstype.ClassName
 import csstype.Color
 import csstype.LineStyle.Companion.dashed
 import csstype.TextAlign
 import emotion.react.css
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import query.QueryError
 import react.FC
 import react.Props
+import react.StateSetter
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
+import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
 import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.tr
-import react.useState
 import tanstack.query.core.QueryKey
-import tanstack.react.query.useQuery
-import tools.fetchText
 
-external interface GroupProps : Props {
-    var streamName: String
-    var groupName: String
+external interface SetGroupProps : Props {
+    var groupSchedule: GroupSchedule
+    var setGroupSchedule: StateSetter<GroupSchedule>
+    var setButtonState: StateSetter<Boolean>
 }
 
-val CGroup = FC<GroupProps>("Group") { props ->
+val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
     var count = 0
-    val selectQueryKey = arrayOf("Group").unsafeCast<QueryKey>()
+    val selectQueryKey = arrayOf("SetGroup").unsafeCast<QueryKey>()
 
 
-    val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
-        fetchText(Config.flowPath + "${props.streamName}/" + props.groupName)
-    })
 
-    val groupSchedule: GroupSchedule = try {
-        Json.decodeFromString(query.data!!)
-    } catch (e: Throwable) {
-        GroupSchedule("null", mutableListOf())
-    }
 
-    val (groupContainer, setGroupContainer) = useState(groupSchedule)
 
     h1 {
         className = ClassName("nameGroup")
         +"Расписание группы:"
-        +groupContainer.group
+        +props.groupSchedule.group
     }
+
     div {
         table {
             tbody {
-                val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
+                val time =
+                    listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
                 val days = listOf(
                     "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
                     "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
                 )
                 tr {
-                    if (groupContainer.group.isNotEmpty()) {
+                    if (props. groupSchedule.group.isNotEmpty()) {
                         th { +"Время:" }
                         time.forEach {
                             th { +it }
@@ -72,7 +61,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
                     borderStyle = dashed
 
                 }
-                if (groupContainer.schedule.isNotEmpty()) {
+                if (props. groupSchedule.schedule.isNotEmpty()) {
                     days.forEach {
 
                         tr {
@@ -85,16 +74,19 @@ val CGroup = FC<GroupProps>("Group") { props ->
                                     }
                                 }
                             }
-                            val scheduleArr = groupContainer.schedule
+                            val scheduleArr = props. groupSchedule.schedule
                             for (i in count..count + 4) {
                                 td {
                                     if (scheduleArr[i].subject != "_") {
-                                        +"${scheduleArr[i].subjectType} "
+                                        input {
+                                            value = {scheduleArr[i].subjectType}
+                                            onChange = {
+
+                                            }
+                                        }
                                         +"${scheduleArr[i].subject} "
                                         +"${scheduleArr[i].teacher} "
                                         +"${scheduleArr[i].place}  "
-                                    } else {
-                                        +" - "
                                     }
                                 }
                                 css {
@@ -113,9 +105,13 @@ val CGroup = FC<GroupProps>("Group") { props ->
             }
         }
     }
-    div{
-        button{
-            +"Изменить"
+
+    div {
+        button {
+            +"Ok"
+            onClick = {
+                props.setButtonState
+            }
         }
     }
 }
