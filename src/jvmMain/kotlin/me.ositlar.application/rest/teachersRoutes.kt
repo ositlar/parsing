@@ -32,23 +32,17 @@ fun Route.teachersRoute() {
                 .map {
                     "$it."
                 }
-                //.json
+                .json
             call.respond(teachers)
         }
         get ("{teacher}") {
             val receivedTeacher =
                 call.parameters["teacher"] ?.decodeURLQueryComponent(charset = Charsets.UTF_8)
             val teachersLessons = listGroupSchedule
-                .flatMap { groupSchedule ->
-                    groupSchedule.schedule.filter { subjectInGroup ->
-                        subjectInGroup.teacher.contains(receivedTeacher!!)
-                    }
-                        .map { subjectInGroup ->
-                            mapOf(groupSchedule.group to subjectInGroup)
-                        }
-                }
+                .flatMap { it.schedule }
+                .filter { it.teacher.contains(receivedTeacher!!) }
+                .sortedBy { it.dayOfWeek }
                 .json
-
             call.respond(teachersLessons)
         }
     }

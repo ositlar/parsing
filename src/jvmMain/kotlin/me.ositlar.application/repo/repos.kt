@@ -68,11 +68,7 @@ fun createTestData() {
         val timeLessonList = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00",
             "13:55 - 15:25", "15:40 - 17:10") // список с промежутками времени с парами
         for (rowIter in 2 until 14) {
-            val days = if (rowIter <=8) {
-                rowIter-2
-            } else {
-                rowIter-8
-            }
+            val days = rowIter-2
             val i = if (rowIter > 6) {
                 1
             } else {

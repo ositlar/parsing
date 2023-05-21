@@ -1,7 +1,6 @@
 package teachers
 
 import Config
-import component.lesson.CTeacherTable
 import csstype.ClassName
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -43,7 +42,6 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
 
     val (inputText, setInputText) = useState("")
     val (suggestions, setSuggestions) = useState<List<String>>(emptyList())
-    val (selectedTeacher, setSelectedTeacher) = useState<String?>(null)
 
     label {
         +"Введите фамилию:"
@@ -70,7 +68,7 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
     }
 
     div {
-        if (inputText.isNotEmpty() && selectedTeacher == null) {
+        if (inputText.isNotEmpty()) {
             select {
                 className = ClassName("select")
                 disabled = true

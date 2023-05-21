@@ -1,4 +1,4 @@
-package component.lesson
+package teachers
 
 import Config
 import common.SubjectInGroup
