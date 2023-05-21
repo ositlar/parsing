@@ -10,11 +10,12 @@ import me.ositlar.application.repo.createTestData
 import me.ositlar.application.rest.facultyRoute
 import me.ositlar.application.rest.groupsRoute
 import me.ositlar.application.rest.teachersRoute
+import me.ositlar.application.rest.updateSchedule
 
 fun main() {
     embeddedServer(
         Netty,
-        port = 8443,
+        port = 8080,
         host = "127.0.0.1",
         watchPaths = listOf("classes")
     ) {
@@ -40,6 +41,7 @@ fun Application.config(isTest: Boolean) {
 
 fun Application.rest() {
     routing {
+        updateSchedule()
         groupsRoute()
         teachersRoute()
         facultyRoute()

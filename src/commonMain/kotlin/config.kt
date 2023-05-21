@@ -4,4 +4,5 @@ object Config{
     const val groupsPath = "groups/"
     const val cathedralPath = "cathedra/"
     const val teachersPath = "teachers/"
+    const val editSchedulePath = "editSchedule/"
 }

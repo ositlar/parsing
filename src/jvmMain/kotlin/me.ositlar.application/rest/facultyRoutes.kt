@@ -43,7 +43,7 @@ fun Route.facultyRoute() {
                         }
                 }
                 .groupBy { it.teacher }
-                //.json
+                .json
             call.respond(facultyScheduleAiSU)
         }
     }

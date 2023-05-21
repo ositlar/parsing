@@ -61,12 +61,6 @@ fun createTestData() {
         val mutList: MutableList<SubjectInGroup> = mutableListOf()
 
         val table = htmlData.select("table")
-        val typeWeekList = listOf("Нечётная", "Чётная")
-        val weekdayList = listOf("Понедельник", "Вторник", "Среда",
-            "Четверг", "Пятница", "Суббота", "Понедельник", "Вторник", "Среда",
-            "Четверг", "Пятница", "Суббота") // список со днями недели
-        val timeLessonList = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00",
-            "13:55 - 15:25", "15:40 - 17:10") // список с промежутками времени с парами
         for (rowIter in 2 until 14) {
             val days = rowIter-2
             val i = if (rowIter > 6) {
@@ -74,7 +68,6 @@ fun createTestData() {
             } else {
                 0
             }
-            val typeWeek = i
             for (coll in 1 until 6) {
                 val time = coll-1
                 val cell = table.select("tr")[rowIter].select("td")[coll]
