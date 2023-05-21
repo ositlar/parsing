@@ -50,7 +50,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
     h1 {
         className = ClassName("nameGroup")
         +"Расписание группы:"
-        +groupContainer.group
+        +groupSchedule.group
     }
     div {
         table {
@@ -61,7 +61,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
                     "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
                 )
                 tr {
-                    if (groupContainer.group.isNotEmpty()) {
+                    if (groupSchedule.group.isNotEmpty()) {
                         th { +"Время:" }
                         time.forEach {
                             th { +it }
@@ -72,7 +72,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
                     borderStyle = dashed
 
                 }
-                if (groupContainer.schedule.isNotEmpty()) {
+                if (groupSchedule.schedule.isNotEmpty()) {
                     days.forEach {
 
                         tr {
@@ -85,7 +85,7 @@ val CGroup = FC<GroupProps>("Group") { props ->
                                     }
                                 }
                             }
-                            val scheduleArr = groupContainer.schedule
+                            val scheduleArr = groupSchedule.schedule
                             for (i in count..count + 4) {
                                 td {
                                     if (scheduleArr[i].subject != "_") {
