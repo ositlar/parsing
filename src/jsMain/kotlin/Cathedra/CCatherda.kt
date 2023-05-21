@@ -87,7 +87,7 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                                     for (timeCount in 0..4) {
                                        val stp =  facultyScheduleAiSU[name]?.firstOrNull { it.dayOfWeek == index && it.time == timeCount }
 
-                                        tr{
+                                        td{
                                             className = ClassName("tdCathedraText")
                                             if (stp == null){
                                                 + " - "
