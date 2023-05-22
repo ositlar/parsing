@@ -63,6 +63,24 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         +props.groupSchedule.group
     }
 
+    ReactHTML.p {
+        className = ClassName("btnChange")
+        Link {
+            ReactHTML.span {
+                +"→"
+            }
+            +"Применить"
+            onClick = {
+                val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
+                updateMutation.mutateAsync(groupSchedule, null)
+                props.setButtonState(true)
+            }
+            ReactHTML.span {
+                +"←"
+            }
+        }
+    }
+
     div {
         table {
             tbody {
@@ -189,23 +207,6 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                         count += 5
                     }
                 }
-            }
-        }
-    }
-    ReactHTML.p {
-        className = ClassName("btnChange")
-        Link {
-            ReactHTML.span {
-                +"→"
-            }
-            +"Применить"
-            onClick = {
-                val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
-                updateMutation.mutateAsync(groupSchedule, null)
-                props.setButtonState(true)
-            }
-            ReactHTML.span {
-                +"←"
             }
         }
     }

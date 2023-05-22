@@ -12,7 +12,6 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
-import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.p
@@ -106,8 +105,5 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
                 }
             }
         }
-    }
-    ReactHTML.p {
-        className = ClassName("btnChange")
     }
 }

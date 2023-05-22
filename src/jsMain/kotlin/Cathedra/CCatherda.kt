@@ -10,7 +10,6 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
-import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.table
@@ -116,8 +115,5 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                 }
             }
         }
-    }
-    ReactHTML.p {
-        className = ClassName("btnChange")
     }
 }

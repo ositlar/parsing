@@ -55,6 +55,22 @@ val CGroup = FC<GroupProps>("Group") { props ->
             +groupSchedule.group
         }
 
+        ReactHTML.p {
+            className = ClassName("btnChange")
+            Link {
+                ReactHTML.span {
+                    +"→"
+                }
+                +"Изменить"
+                onClick = {
+                    setStateButton(false)
+                }
+                ReactHTML.span {
+                    +"←"
+                }
+            }
+        }
+
         div {
             table {
                 tbody {
@@ -114,21 +130,6 @@ val CGroup = FC<GroupProps>("Group") { props ->
                             count += 5
                         }
                     }
-                }
-            }
-        }
-        ReactHTML.p {
-            className = ClassName("btnChange")
-            Link {
-                ReactHTML.span {
-                    +"→"
-                }
-                +"Изменить"
-                onClick = {
-                    setStateButton(false)
-                }
-                ReactHTML.span {
-                    +"←"
                 }
             }
         }
