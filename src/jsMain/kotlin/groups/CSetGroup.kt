@@ -22,13 +22,11 @@ import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
 import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.tr
-import react.useRef
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useMutation
 import tanstack.react.query.useQueryClient
 import tools.HTTPResult
 import tools.fetch
-import web.html.HTMLInputElement
 import kotlin.js.json
 
 external interface SetGroupProps : Props {
@@ -42,8 +40,8 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
     val selectQueryKey = arrayOf("SetGroup").unsafeCast<QueryKey>()
 
     val updateMutation = useMutation<HTTPResult, Any, GroupSchedule, Any>(mutationFn = { item: GroupSchedule ->
-        fetch(Config.cathedralPath, jso {
-            method = "PUT"
+        fetch(Config.editSchedulePath + "ASD", jso {
+            method = "POST"
             headers = json(
                 "Content-Type" to "application/json"
             )
@@ -55,12 +53,13 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         }
     })
 
-    val ref1 = useRef<HTMLInputElement>()
-    val ref2 = useRef<HTMLInputElement>()
-    val ref3 = useRef<HTMLInputElement>()
-    val ref4 = useRef<HTMLInputElement>()
 
-    var subjectInGroup: MutableList<SubjectInGroup> = mutableListOf()
+    val subjectInGroup: MutableList<SubjectInGroup> = mutableListOf()
+
+    var input1 = ""
+    var input2 = ""
+    var input3 = ""
+    var input4 = ""
 
     h1 {
         className = ClassName("nameGroup")
@@ -72,7 +71,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         onClick = {
             val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
             updateMutation.mutateAsync(groupSchedule, null)
-
+            props.setButtonState = true
         }
     }
     div {
@@ -111,63 +110,92 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                 td {
                                     if (scheduleArr[i].subject != "_") {
                                         input {
-                                            ref = ref1
                                             defaultValue = scheduleArr[i].subjectType
+                                            input1 = scheduleArr[i].subjectType.toString()
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].subjectType = it.target.value
+                                                else subjectInGroup[i].subjectType = " - "
+                                            }
                                         }
                                         input {
-                                            ref = ref2
                                             defaultValue = scheduleArr[i].subject
+                                            input2 = scheduleArr[i].subject
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].subject = it.target.value
+                                                else subjectInGroup[i].subject = " - "
+                                            }
                                         }
                                         input {
-                                            ref = ref3
+                                            input3 = scheduleArr[i].teacher
                                             defaultValue = scheduleArr[i].teacher
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].teacher = it.target.value
+                                                else subjectInGroup[i].teacher = " - "
+                                            }
                                         }
                                         input {
-                                            ref = ref4
+                                            input4 = scheduleArr[i].place.toString()
                                             defaultValue = scheduleArr[i].place
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].place = it.target.value
+                                                else subjectInGroup[i].place = " - "
+                                            }
                                         }
-
                                     } else {
                                         input {
-                                            ref = ref1
                                             defaultValue = " - "
+                                            input1 = " - "
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].subjectType = it.target.value
+                                                else subjectInGroup[i].subjectType = " - "
+                                            }
                                         }
                                         input {
-                                            ref = ref2
                                             defaultValue = " - "
+                                            input2 = " - "
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].subjectType = it.target.value
+                                                else subjectInGroup[i].subject = " - "
+                                            }
                                         }
                                         input {
-                                            ref = ref3
                                             defaultValue = " - "
+                                            input3 = " - "
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].subjectType = it.target.value
+                                                else subjectInGroup[i].teacher = " - "
+                                            }
                                         }
                                         input {
-                                            ref = ref4
                                             defaultValue = " - "
+                                            input4 = " - "
+                                            onChange = {
+                                                if (it.target.value.isNotEmpty())
+                                                subjectInGroup[i].subjectType = it.target.value
+                                                else subjectInGroup[i].place = " - "
+                                            }
                                         }
                                     }
                                 }
-                            }
-
-                            css {
-                                textAlign = TextAlign.center
-                                if (count >= 30) {
-                                    color = Color("Blue")
-                                }
-                            }
-
-                            subjectInGroup = subjectInGroup.plus(ref2.current?.let { it1 ->
-                                ref3.current?.let { it2 ->
+                                subjectInGroup.add(
                                     SubjectInGroup(
                                         props.groupSchedule.group,
                                         index,
-                                        count,
-                                        ref1.current?.value,
-                                        it1.value,
-                                        it2.value,
-                                        ref4.current?.value
+                                        i,
+                                        input1,
+                                        input2,
+                                        input3.uppercase(),
+                                        input4
                                     )
-                                }
-                            }) as MutableList<SubjectInGroup>
+                                )
+                            }
                         }
                         count += 5
                     }

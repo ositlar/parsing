@@ -13,6 +13,7 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
+import react.create
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
@@ -50,6 +51,8 @@ val CGroup = FC<GroupProps>("Group") { props ->
 
     val (groupContainer, setGroupContainer) = useState(groupSchedule)
 
+
+    if (stateButton){
     h1 {
         className = ClassName("nameGroup")
         +"Расписание группы:"
@@ -58,8 +61,10 @@ val CGroup = FC<GroupProps>("Group") { props ->
     button {
         className = ClassName("btnChange")
         +"Изменить"
+        onClick = {
+            setStateButton(false)
+        }
     }
-    if (!stateButton){
         div {
             table {
                 tbody {
@@ -124,8 +129,9 @@ val CGroup = FC<GroupProps>("Group") { props ->
         }
     }
     else{
-        CSetGroup{
+        CSetGroup.create{
             this.groupSchedule = groupSchedule
+            setStateButton(this.setButtonState)
         }
     }
 }

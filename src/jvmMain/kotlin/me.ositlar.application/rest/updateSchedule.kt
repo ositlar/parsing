@@ -9,23 +9,15 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import me.ositlar.application.repo.collection
 import org.bson.Document
+import org.litote.kmongo.updateOne
 
 fun Route.updateSchedule() {
-    route(Config.editSchedulePath) {
-        put {
+    route(Config.editSchedulePath + "ASD") {
+       post {
             val newSchedule = call.receive<GroupSchedule>()
-            val result = collection.updateOne(
-                Document("group", newSchedule.group),
-                Document("schedule", newSchedule.schedule)
-            )
-            if (result.matchedCount == 1L && result.modifiedCount == 1L) {
-                call.respondText(
-                    "Schedule updated correctly",
-                    status = HttpStatusCode.Accepted)
-            } else {
-                call.respondText(
-                    "Schedule didn't update correctly",
-                    status = HttpStatusCode.NotFound)
+             collection.updateOne(newSchedule.group, newSchedule)
+            if (newSchedule.schedule.isNotEmpty()) {
+                call.respondText("Все оки", status = HttpStatusCode.Accepted)
             }
         }
     }
