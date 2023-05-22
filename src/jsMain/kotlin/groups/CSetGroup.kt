@@ -13,6 +13,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import react.FC
 import react.Props
+import react.StateSetter
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
@@ -31,7 +32,7 @@ import kotlin.js.json
 
 external interface SetGroupProps : Props {
     var groupSchedule: GroupSchedule
-    var setButtonState: Boolean
+    var setButtonState: (Boolean) -> Unit
 }
 
 val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
@@ -40,7 +41,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
     val selectQueryKey = arrayOf("SetGroup").unsafeCast<QueryKey>()
 
     val updateMutation = useMutation<HTTPResult, Any, GroupSchedule, Any>(mutationFn = { item: GroupSchedule ->
-        fetch(Config.editSchedulePath + "ASD", jso {
+        fetch(Config.editSchedulePath + "Update", jso {
             method = "POST"
             headers = json(
                 "Content-Type" to "application/json"
@@ -53,13 +54,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         }
     })
 
-
     val subjectInGroup: MutableList<SubjectInGroup> = mutableListOf()
-
-    var input1 = ""
-    var input2 = ""
-    var input3 = ""
-    var input4 = ""
 
     h1 {
         className = ClassName("nameGroup")
@@ -71,7 +66,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         onClick = {
             val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
             updateMutation.mutateAsync(groupSchedule, null)
-            props.setButtonState = true
+            props.setButtonState(true)
         }
     }
     div {
@@ -111,75 +106,75 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                     if (scheduleArr[i].subject != "_") {
                                         input {
                                             defaultValue = scheduleArr[i].subjectType
-                                            input1 = scheduleArr[i].subjectType.toString()
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].subjectType = it.target.value
-                                                else subjectInGroup[i].subjectType = " - "
+                                                    subjectInGroup[i].subjectType = it.target.value
+                                                else
+                                                    subjectInGroup[i].subjectType = " - "
                                             }
                                         }
                                         input {
                                             defaultValue = scheduleArr[i].subject
-                                            input2 = scheduleArr[i].subject
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].subject = it.target.value
-                                                else subjectInGroup[i].subject = " - "
+                                                    subjectInGroup[i].subject = it.target.value
+                                                else
+                                                    subjectInGroup[i].subject = " - "
                                             }
                                         }
                                         input {
-                                            input3 = scheduleArr[i].teacher
                                             defaultValue = scheduleArr[i].teacher
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].teacher = it.target.value
-                                                else subjectInGroup[i].teacher = " - "
+                                                    subjectInGroup[i].teacher = it.target.value
+                                                else
+                                                    subjectInGroup[i].teacher = " - "
                                             }
                                         }
                                         input {
-                                            input4 = scheduleArr[i].place.toString()
-                                            defaultValue = scheduleArr[i].place
+                                            defaultValue = scheduleArr[i].place.toString()
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].place = it.target.value
-                                                else subjectInGroup[i].place = " - "
+                                                    subjectInGroup[i].place = it.target.value
+                                                else
+                                                    subjectInGroup[i].place = " - "
                                             }
                                         }
                                     } else {
                                         input {
                                             defaultValue = " - "
-                                            input1 = " - "
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].subjectType = it.target.value
-                                                else subjectInGroup[i].subjectType = " - "
+                                                    subjectInGroup[i].subjectType = it.target.value
+                                                else
+                                                    subjectInGroup[i].subjectType = " - "
                                             }
                                         }
                                         input {
                                             defaultValue = " - "
-                                            input2 = " - "
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].subjectType = it.target.value
-                                                else subjectInGroup[i].subject = " - "
+                                                    subjectInGroup[i].subject = it.target.value
+                                                else
+                                                    subjectInGroup[i].subject = " - "
                                             }
                                         }
                                         input {
                                             defaultValue = " - "
-                                            input3 = " - "
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].subjectType = it.target.value
-                                                else subjectInGroup[i].teacher = " - "
+                                                    subjectInGroup[i].teacher = it.target.value
+                                                else
+                                                    subjectInGroup[i].teacher = " - "
                                             }
                                         }
                                         input {
                                             defaultValue = " - "
-                                            input4 = " - "
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
-                                                subjectInGroup[i].subjectType = it.target.value
-                                                else subjectInGroup[i].place = " - "
+                                                    subjectInGroup[i].place = it.target.value
+                                                else
+                                                    subjectInGroup[i].place = " - "
                                             }
                                         }
                                     }
@@ -189,10 +184,10 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                         props.groupSchedule.group,
                                         index,
                                         i,
-                                        input1,
-                                        input2,
-                                        input3.uppercase(),
-                                        input4
+                                        scheduleArr[i].subjectType,
+                                        scheduleArr[i].subject,
+                                        scheduleArr[i].teacher,
+                                        scheduleArr[i].place
                                     )
                                 )
                             }
@@ -204,4 +199,3 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         }
     }
 }
-

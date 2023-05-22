@@ -50,9 +50,6 @@ val CGroup = FC<GroupProps>("Group") { props ->
         GroupSchedule("null", mutableListOf())
     }
 
-    val (groupContainer, setGroupContainer) = useState(groupSchedule)
-
-
     if (stateButton){
     h1 {
         className = ClassName("nameGroup")
@@ -145,9 +142,9 @@ val CGroup = FC<GroupProps>("Group") { props ->
         }
     }
     else{
-        CSetGroup.create{
+        CSetGroup{
             this.groupSchedule = groupSchedule
-            setStateButton(this.setButtonState)
+            this.setButtonState.let { setButtonState(it) }
         }
     }
 }
