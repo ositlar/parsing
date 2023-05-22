@@ -13,8 +13,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import react.FC
 import react.Props
-import react.StateSetter
-import react.dom.html.ReactHTML.button
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.input
@@ -23,6 +22,7 @@ import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
 import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.tr
+import react.router.dom.Link
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useMutation
 import tanstack.react.query.useQueryClient
@@ -62,15 +62,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
         +"Редактирование расписания группы:"
         +props.groupSchedule.group
     }
-    button {
-        +" OK "
-        onClick = {
-            val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
-            updateMutation.mutateAsync(groupSchedule, null)
-            props.setButtonState(true)
-        }
 
-    }
     div {
         table {
             tbody {
@@ -197,6 +189,23 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                         count += 5
                     }
                 }
+            }
+        }
+    }
+    ReactHTML.p {
+        className = ClassName("btnChange")
+        Link {
+            ReactHTML.span {
+                +"→"
+            }
+            +"Применить"
+            onClick = {
+                val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
+                updateMutation.mutateAsync(groupSchedule, null)
+                props.setButtonState(true)
+            }
+            ReactHTML.span {
+                +"←"
             }
         }
     }

@@ -43,6 +43,29 @@ td{
     border-collapse: collapse;
 }
 
+.scrollCathedra{
+    border: 1px solid #000;
+    width: 90%px;
+    height: auto;
+    overflow: auto;
+
+}
+
+.scrollCathedra::-webkit-scrollbar {
+  width: 1em;
+}
+
+.scrollCathedra::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+
+.scrollCathedra::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(180deg, #b2ebd6 0%, #5fa189 99%);
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+  border-radius: 100px;
+}
+
 .tdTd {
     border: 2px;
     border-style: solid;

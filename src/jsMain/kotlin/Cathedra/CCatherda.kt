@@ -45,6 +45,7 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
         +"Расписание кафедры АиСУ"
     }
     div {
+        className = ClassName("scrollCathedra")
         table {
             tbody {
                 tr {
