@@ -8,16 +8,18 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import me.ositlar.application.repo.collection
-import org.bson.Document
+import org.litote.kmongo.SetTo
+import org.litote.kmongo.eq
+import org.litote.kmongo.set
+import org.litote.kmongo.updateOne
 
 fun Route.updateSchedule() {
-    route(Config.editSchedulePath) {
-        put {
+    route(Config.editSchedulePath + "ASD") {
+        patch {
             val newSchedule = call.receive<GroupSchedule>()
-            val result = collection.updateOne(
-                Document("group", newSchedule.group),
-                Document("schedule", newSchedule.schedule)
-            )
+            val filter = GroupSchedule::group eq newSchedule.group
+            val update = set(SetTo(GroupSchedule::schedule, newSchedule.schedule))
+            val result = collection.updateOne<GroupSchedule>(filter, update)
             if (result.matchedCount == 1L && result.modifiedCount == 1L) {
                 call.respondText(
                     "Schedule updated correctly",
