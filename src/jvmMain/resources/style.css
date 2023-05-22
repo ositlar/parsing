@@ -20,7 +20,7 @@ table{
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 8%;
+    /*margin-bottom: 8%;*/
     font-size: 16px;
     border: 3px;
     border-style: solid;
@@ -62,8 +62,8 @@ td{
 
 .btnChange{
     position: relative;
-    left: 80%;
-    margin: 20px;
+    left: 75%;
+    margin: 20px 20px 100px 20px;
 }
 
 .btnChange a {
@@ -94,7 +94,7 @@ td{
 .btnOk{
     position: relative;
     left: 80%;
-    margin: 20px;
+    margin: 20px 20px 100px 20px;
 }
 
 .btnOk a {
