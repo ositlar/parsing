@@ -14,8 +14,8 @@ import org.litote.kmongo.set
 import org.litote.kmongo.updateOne
 
 fun Route.updateSchedule() {
-    route(Config.editSchedulePath + "ASD") {
-        patch {
+    route(Config.editSchedulePath + "Update") {
+        post {
             val newSchedule = call.receive<GroupSchedule>()
             val filter = GroupSchedule::group eq newSchedule.group
             val update = set(SetTo(GroupSchedule::schedule, newSchedule.schedule))

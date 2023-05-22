@@ -144,7 +144,9 @@ val CGroup = FC<GroupProps>("Group") { props ->
     else{
         CSetGroup{
             this.groupSchedule = groupSchedule
-            this.setButtonState.let { setButtonState(it) }
+            this.setButtonState = {
+                setStateButton(it)
+            }
         }
     }
 }
