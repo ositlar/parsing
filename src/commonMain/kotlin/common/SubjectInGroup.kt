@@ -7,8 +7,8 @@ data class SubjectInGroup(
     val group: String,
     val dayOfWeek: Int,
     val time: Int,
-    val subjectType: String? = "-",
-    val subject: String,
-    val teacher: String,
-    val place: String? = "-"
+    var subjectType: String? = "-",
+    var subject: String,
+    var teacher: String,
+    var place: String? = "-"
 )
