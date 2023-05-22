@@ -29,7 +29,7 @@ external interface TeacherProps : Props {
 }
 
 val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
-    val selectQueryKey = arrayOf("CTeacherTable").unsafeCast<QueryKey>()
+    val selectQueryKey = arrayOf("Group","CTeacherTable").unsafeCast<QueryKey>()
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
         fetchText(Config.teachersPath + props.teacherName)

@@ -23,7 +23,7 @@ import tools.fetchText
 
 
 val CCathedra = FC<GroupProps>("Cathedra") { props ->
-    val selectQueryKey = arrayOf("Cathedra").unsafeCast<QueryKey>()
+    val selectQueryKey = arrayOf("Group","Cathedra").unsafeCast<QueryKey>()
 
     val query = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
         fetchText(Config.cathedralPath)

@@ -17,8 +17,6 @@ fun Route.facultyRoute() {
     route(Config.cathedralPath) {
         val serializer: KSerializer<GroupSchedule> = serializer()
         val listSerializer = ListSerializer(serializer)
-        val listGroupSchedule =
-            Json.decodeFromString(listSerializer, collection.find().json)
         val listOfTeachersAiSU = listOf<String>(
             "АЛЬТМАН Е.А.", "ЕЛИЗАРОВ Д.А.", "КАШТАНОВ А.Л.", "ЛАВРУХИН А.А.",
             "МАЛЮТИН А.Г.", "ОКИШЕВ А.С.", "ПЕТРОВ В.В.", "ТИХОНОВА Н.А.",
@@ -26,6 +24,9 @@ fun Route.facultyRoute() {
             "ПАШКОВА Н.В.", "ПОНОМАРЁВ А.В.", "СМАЛЕВ А.Н.", "ГОЛОВИН Д.В.", "ДЕНИСОВА Л.А."
         )
         get {
+            val listGroupSchedule =
+                Json.decodeFromString(listSerializer, collection.find().json)
+
             val facultyScheduleAiSU = listGroupSchedule
                 .flatMap { groupSchedule ->
                     groupSchedule.schedule.filter { subjectInGroup ->

@@ -16,10 +16,12 @@ import org.litote.kmongo.json
 fun Route.teachersRoute() {
     val serializer: KSerializer<GroupSchedule> = serializer()
     val listSerializer = ListSerializer(serializer)
-    val listGroupSchedule =
-        Json.decodeFromString(listSerializer, collection.find().json)
+
     route(Config.teachersPath) {
         get {
+            val listGroupSchedule =
+                Json.decodeFromString(listSerializer, collection.find().json)
+
             val teachers = listGroupSchedule
                 .map { it.schedule.map { it.teacher }.toSet() }
                 .flatten()
@@ -36,6 +38,9 @@ fun Route.teachersRoute() {
             call.respond(teachers)
         }
         get ("{teacher}") {
+            val listGroupSchedule =
+                Json.decodeFromString(listSerializer, collection.find().json)
+
             val receivedTeacher =
                 call.parameters["teacher"] ?.decodeURLQueryComponent(charset = Charsets.UTF_8)
             val teachersLessons = listGroupSchedule

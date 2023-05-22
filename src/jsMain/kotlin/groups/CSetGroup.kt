@@ -69,7 +69,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
             ReactHTML.span {
                 +"→"
             }
-            +"Изменить"
+            +"Применить"
             onClick = {
                 val groupSchedule = GroupSchedule(props.groupSchedule.group, subjectInGroup.toMutableList())
                 updateMutation.mutateAsync(groupSchedule, null)
