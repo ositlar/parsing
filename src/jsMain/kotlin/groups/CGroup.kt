@@ -13,7 +13,6 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
-import react.create
 import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
@@ -49,13 +48,12 @@ val CGroup = FC<GroupProps>("Group") { props ->
     } catch (e: Throwable) {
         GroupSchedule("null", mutableListOf())
     }
-
-    if (stateButton){
-    h1 {
-        className = ClassName("nameGroup")
-        +"Расписание группы:"
-        +groupSchedule.group
-    }
+    if (stateButton) {
+        h1 {
+            className = ClassName("nameGroup")
+            +"Расписание группы:"
+            +groupSchedule.group
+        }
 //    button {
 //        className = ClassName("btnChange")
 //        +"Изменить"
@@ -140,9 +138,9 @@ val CGroup = FC<GroupProps>("Group") { props ->
                 }
             }
         }
-    }
-    else{
-        CSetGroup{
+    } else {
+
+        CSetGroup {
             this.groupSchedule = groupSchedule
             this.setButtonState = {
                 setStateButton(it)

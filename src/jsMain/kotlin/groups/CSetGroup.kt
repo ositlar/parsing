@@ -38,9 +38,10 @@ external interface SetGroupProps : Props {
 val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
     val queryClient = useQueryClient()
     var count = 0
-    val selectQueryKey = arrayOf("SetGroup").unsafeCast<QueryKey>()
+    val selectQueryKey = arrayOf("Group").unsafeCast<QueryKey>()
 
-    val updateMutation = useMutation<HTTPResult, Any, GroupSchedule, Any>(mutationFn = { item: GroupSchedule ->
+    val updateMutation = useMutation<HTTPResult, Any, GroupSchedule, Any>(
+        mutationFn = { item: GroupSchedule ->
         fetch(Config.editSchedulePath + "Update", jso {
             method = "POST"
             headers = json(
@@ -68,6 +69,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
             updateMutation.mutateAsync(groupSchedule, null)
             props.setButtonState(true)
         }
+
     }
     div {
         table {
@@ -110,7 +112,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].subjectType = it.target.value
                                                 else
-                                                    subjectInGroup[i].subjectType = " - "
+                                                    subjectInGroup[i].subjectType ="_"
                                             }
                                         }
                                         input {
@@ -119,7 +121,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].subject = it.target.value
                                                 else
-                                                    subjectInGroup[i].subject = " - "
+                                                    subjectInGroup[i].subject = "_"
                                             }
                                         }
                                         input {
@@ -128,7 +130,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].teacher = it.target.value
                                                 else
-                                                    subjectInGroup[i].teacher = " - "
+                                                    subjectInGroup[i].teacher = "_"
                                             }
                                         }
                                         input {
@@ -137,7 +139,7 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].place = it.target.value
                                                 else
-                                                    subjectInGroup[i].place = " - "
+                                                    subjectInGroup[i].place = "_"
                                             }
                                         }
                                     } else {
@@ -147,34 +149,34 @@ val CSetGroup = FC<SetGroupProps>("SetGroup") { props ->
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].subjectType = it.target.value
                                                 else
-                                                    subjectInGroup[i].subjectType = " - "
+                                                    subjectInGroup[i].subjectType = "_"
                                             }
                                         }
                                         input {
-                                            defaultValue = " - "
+                                            defaultValue ="_"
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].subject = it.target.value
                                                 else
-                                                    subjectInGroup[i].subject = " - "
+                                                    subjectInGroup[i].subject ="_"
                                             }
                                         }
                                         input {
-                                            defaultValue = " - "
+                                            defaultValue = "_"
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].teacher = it.target.value
                                                 else
-                                                    subjectInGroup[i].teacher = " - "
+                                                    subjectInGroup[i].teacher = "_"
                                             }
                                         }
                                         input {
-                                            defaultValue = " - "
+                                            defaultValue = "_"
                                             onChange = {
                                                 if (it.target.value.isNotEmpty())
                                                     subjectInGroup[i].place = it.target.value
                                                 else
-                                                    subjectInGroup[i].place = " - "
+                                                    subjectInGroup[i].place = "_"
                                             }
                                         }
                                     }
