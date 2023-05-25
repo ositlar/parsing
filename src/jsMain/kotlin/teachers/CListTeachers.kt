@@ -23,18 +23,19 @@ import web.html.HTMLInputElement
 import web.html.HTMLSelectElement
 import web.html.InputType
 
-val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент который выводит всех преподователей
+val CListTeachers = FC<Props>("ListTeachers") { _ ->
     val selectQueryKey = arrayOf("ListTeachers").unsafeCast<QueryKey>()
 
     val querySteams = useQuery<String, QueryError, String, QueryKey>(queryKey = selectQueryKey, queryFn = {
         fetchText(Config.teachersPath)
     })
 
-    val groupsList: List<String> = try {
-        Json.decodeFromString(querySteams.data!!)
-    } catch (e: Throwable) {
+    val groupsList: List<String> = try{
+        Json.decodeFromString(querySteams.data?:"")
+    }catch (e: Throwable){
         emptyList()
     }
+
 
     val inputRef = useRef<HTMLInputElement>()
     val selectRef = useRef<HTMLSelectElement>()
@@ -46,6 +47,7 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
         +"Введите фамилию:"
         className = ClassName("labelSirname")
     }
+
     input {
         className = ClassName("inputTeacher")
         placeholder = "Search.."
@@ -66,7 +68,6 @@ val CListTeachers = FC<Props>("ListTeachers") { _ -> // Компонент ко�
             if (event.asDynamic().keyCode == 13 && suggestions.isNotEmpty()) {
                 setInputText(suggestions.first())
             }
-
         }
     }
 

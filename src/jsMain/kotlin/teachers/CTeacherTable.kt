@@ -35,11 +35,12 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
         fetchText(Config.teachersPath + props.teacherName)
     })
 
-    val groupsList: List<SubjectInGroup> = try {
+    val groupsList: List<SubjectInGroup> = try{
         Json.decodeFromString(query.data!!)
-    } catch (e: Throwable) {
+    }catch(e: Throwable){
         emptyList()
     }
+
     val time = listOf("08:00 - 09:30", "09:45 - 11:15", "11:30 - 13:00", "13:55 - 15:25", "15:40 - 17:10")
     val days = listOf(
         "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
@@ -56,11 +57,18 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
     }
     div {
         table {
+            className = ClassName("table")
             tbody {
                 tr {
-                    th { +"Время:" }
+                    th {
+                        className = ClassName("th")
+                        +"Время:"
+                    }
                     time.forEach {
-                        th { +it }
+                        th {
+                            className = ClassName("th")
+                            +it
+                        }
                     }
                 }
                 css {
@@ -70,6 +78,7 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
                     tr {
                         className = ClassName("tdAny")
                         td {
+                            className = ClassName("td")
                             +day
                             css {
                                 textAlign = TextAlign.left
@@ -80,6 +89,7 @@ val CTeacherTable = FC<TeacherProps>("CTeacherTable") { props ->
                         }
                         for (timeCount in 0..4) {
                             td {
+                                className = ClassName("td")
                                 val sub = groupsList
                                     .firstOrNull { it.dayOfWeek ==  index && it.time == timeCount }
                                 if (sub != null) {

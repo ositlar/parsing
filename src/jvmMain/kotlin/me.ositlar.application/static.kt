@@ -26,6 +26,12 @@ fun HTML.index() {
             rel = "stylesheet"
             href = "static/footer.css"
         }
+        link {
+            rel = "stylesheet"
+            href = "static/pdf.css"
+            type = "text/css"
+            media = "print"
+        }
     }
     body {
         div {

@@ -15,7 +15,7 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
-table{
+.table{
     width: 90%;
     height: auto;
     margin-left: auto;
@@ -28,13 +28,42 @@ table{
     border-collapse: collapse;
 }
 
-th{
+.tableCathedra{
+    width: 90%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px;
+    border-style: solid;
+    border-color: #000000;
+    border-collapse: collapse;
+}
+
+
+.th{
     border: 2px;
     border-style: solid;
     border-collapse: collapse;
 }
 
-td{
+.td{
+    border: 2px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+    padding: 5px;
+    border-collapse: collapse;
+}
+
+.css-6e707m{
+    border: 2px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+    padding: 5px;
+    border-collapse: collapse;
+}
+.css-13brihr{
     border: 2px;
     border-style: solid;
     border-color: #000000;
@@ -44,11 +73,10 @@ td{
 }
 
 .scrollCathedra{
-    border: 1px solid #000;
     width: 90%px;
     height: auto;
     overflow: auto;
-
+    margin-bottom: 8%;
 }
 
 .scrollCathedra::-webkit-scrollbar {
@@ -56,7 +84,8 @@ td{
 }
 
 .scrollCathedra::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #e4e4e4;
+  border-radius: 100px;
 }
 
 
@@ -66,10 +95,24 @@ td{
   border-radius: 100px;
 }
 
+.cathedra{
+    position: relative;
+    left: 60px;
+}
+
 .tdTd {
-    border: 2px;
+    border: 1px;
     border-style: solid;
     border-color: #000000;
+    border-collapse: collapse;
+}
+
+.tdTd td{
+    min-width: 23px;
+    height: 50px;
+    font-size: 8px;
+    border-left: solid 1px;
+    text-align: center;
     border-collapse: collapse;
 }
 
@@ -77,10 +120,18 @@ td{
     writing-mode: vertical-rl;
     text-orientation: mixed;
     transform: rotate(180deg);
-    border-left: 1px;
-    border-top: 1px;
-    border-bottom: 1px;
+    border: solid 1px;
     border-collapse: collapse;
+}
+
+.tdTimeCathedra{
+    min-width: 28px;
+    height: 105px;
+}
+
+.tdTeacherName{
+    border: solid 1px;
+    text-align: center;
 }
 
 .btnChange{
@@ -172,6 +223,8 @@ td{
 
 .nameTeacher{
     border-style: none;
+    text-align: center;
+    border-left: 2px;
 }
 
 .tableGroup {

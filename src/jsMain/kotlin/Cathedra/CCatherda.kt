@@ -41,15 +41,18 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
         "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
     )
     h1 {
+        className = ClassName("cathedra")
         +"Расписание кафедры АиСУ"
     }
     div {
         className = ClassName("scrollCathedra")
         table {
+            className = ClassName("tableCathedra")
             tbody {
                 tr {
                     days.forEach { day ->
                         th {
+                            className = ClassName("thCathedra")
                             +day
                         }
                     }
@@ -68,6 +71,7 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                             }
                         } else {
                             td {
+                                className = ClassName("tdTeacherName")
                                 +"ФИО Преподователя"
                             }
                         }
@@ -86,7 +90,7 @@ val CCathedra = FC<GroupProps>("Cathedra") { props ->
                                     }
                                 } else {
                                     for (timeCount in 0..4) {
-                                       val stp =  facultyScheduleAiSU[name]?.firstOrNull { it.dayOfWeek == index && it.time == timeCount }
+                                        val stp =  facultyScheduleAiSU[name]?.firstOrNull { it.dayOfWeek == index && it.time == timeCount }
 
                                         td{
                                             className = ClassName("tdCathedraText")

@@ -1,0 +1,8 @@
+body {
+    background: none;
+    color:#000;
+}
+
+header, footer{
+    display: none;
+}
