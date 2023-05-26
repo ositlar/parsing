@@ -1,6 +1,7 @@
 package Settings
 
 import Config
+import csstype.ClassName
 import js.core.get
 import js.core.jso
 import kotlinx.serialization.encodeToString
@@ -8,9 +9,11 @@ import kotlinx.serialization.json.Json
 import query.QueryError
 import react.FC
 import react.Props
-import react.dom.html.ReactHTML.button
-import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.input
+import react.dom.html.ReactHTML.label
+import react.dom.html.ReactHTML.span
+import react.router.dom.Link
 import react.useState
 import tanstack.query.core.QueryKey
 import tanstack.react.query.useMutation
@@ -49,18 +52,37 @@ val CSettings = FC<Props>("Settings") {
             }
         })
 
-    div {
+    label {
+        className = ClassName("drop-container")
+        span{
+            className = ClassName("drop-title")
+            +"Переместите файлы в область"
+        }
+        span{
+            className = ClassName("drop-title")
+            +"или"
+        }
         input {
+            className = ClassName("images")
             type = InputType.file
             onChange = { event ->
                 event.target.files!![0].text().then { res = it }
                 //console.log(res)
             }
         }
-        button {
-            +"Отправить"
-            onClick = {
-                updateMutation.mutateAsync(res.split("\r\n"), null)
+        ReactHTML.p {
+            className = ClassName("btnSend")
+            Link {
+                span {
+                    +"→"
+                }
+                +"Отправить"
+                onClick = {
+                    updateMutation.mutateAsync(res.split("\r\n"), null)
+                }
+                span {
+                    +"←"
+                }
             }
         }
     }

@@ -39,6 +39,14 @@ val app = FC<Props>("App") {
             client = QueryClient()
             header {
                 className = ClassName("header")
+                nav{
+                    className = ClassName("headerRight")
+                    Link {
+                        +""
+                        className = ClassName("iconSetting")
+                        to = Config.editUrlsPath
+                    }
+                }
                 nav {
                     className = ClassName("menu")
                     ReactHTML.ul {
@@ -53,10 +61,6 @@ val app = FC<Props>("App") {
                                 }
                             }
                         }
-                    }
-                    Link {
-                        +"Settings"
-                        to = Config.editUrlsPath
                     }
                 }
 
