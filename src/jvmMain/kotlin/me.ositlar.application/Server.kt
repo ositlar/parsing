@@ -6,11 +6,9 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
+import me.ositlar.application.repo.collectionGroups
 import me.ositlar.application.repo.createTestData
-import me.ositlar.application.rest.facultyRoute
-import me.ositlar.application.rest.groupsRoute
-import me.ositlar.application.rest.teachersRoute
-import me.ositlar.application.rest.updateSchedule
+import me.ositlar.application.rest.*
 
 fun main() {
     embeddedServer(
@@ -34,13 +32,14 @@ fun Application.config(isTest: Boolean) {
     install(ContentNegotiation) {
         json()
     }
-    if (isTest) {
+    if (isTest && collectionGroups.find().toList().isEmpty()) {
         createTestData()
     }
 }
 
 fun Application.rest() {
     routing {
+        urlsEditRoutes()
         updateSchedule()
         groupsRoute()
         teachersRoute()

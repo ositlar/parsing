@@ -10,7 +10,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import me.ositlar.application.repo.collection
+import me.ositlar.application.repo.collectionGroups
 import org.litote.kmongo.json
 
 fun Route.facultyRoute() {
@@ -25,7 +25,7 @@ fun Route.facultyRoute() {
         )
         get {
             val listGroupSchedule =
-                Json.decodeFromString(listSerializer, collection.find().json)
+                Json.decodeFromString(listSerializer, collectionGroups.find().json)
 
             val facultyScheduleAiSU = listGroupSchedule
                 .flatMap { groupSchedule ->

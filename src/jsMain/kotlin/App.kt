@@ -1,6 +1,7 @@
 @file:Suppress("CAST_NEVER_SUCCEEDS")
 
 import Cathedra.CCathedra
+import Settings.CSettings
 import component.lesson.CFlow
 import csstype.ClassName
 import kotlinx.browser.document
@@ -53,7 +54,12 @@ val app = FC<Props>("App") {
                             }
                         }
                     }
+                    Link {
+                        +"Settings"
+                        to = Config.editUrlsPath
+                    }
                 }
+
             }
 
             Routes {
@@ -68,6 +74,10 @@ val app = FC<Props>("App") {
                 Route {
                     path = "${Config.cathedralPath}*"
                     element = CCathedra.create()
+                }
+                Route {
+                    path = "${Config.editUrlsPath}*"
+                    element = CSettings.create()
                 }
             }
 

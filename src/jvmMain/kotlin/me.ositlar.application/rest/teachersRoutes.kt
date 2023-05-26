@@ -10,7 +10,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import me.ositlar.application.repo.collection
+import me.ositlar.application.repo.collectionGroups
 import org.litote.kmongo.json
 
 fun Route.teachersRoute() {
@@ -20,7 +20,7 @@ fun Route.teachersRoute() {
     route(Config.teachersPath) {
         get {
             val listGroupSchedule =
-                Json.decodeFromString(listSerializer, collection.find().json)
+                Json.decodeFromString(listSerializer, collectionGroups.find().json)
 
             val teachers = listGroupSchedule
                 .map { it.schedule.map { it.teacher }.toSet() }
@@ -39,7 +39,7 @@ fun Route.teachersRoute() {
         }
         get ("{teacher}") {
             val listGroupSchedule =
-                Json.decodeFromString(listSerializer, collection.find().json)
+                Json.decodeFromString(listSerializer, collectionGroups.find().json)
 
             val receivedTeacher =
                 call.parameters["teacher"] ?.decodeURLQueryComponent(charset = Charsets.UTF_8)

@@ -5,4 +5,5 @@ object Config{
     const val cathedralPath = "cathedra/"
     const val teachersPath = "teachers/"
     const val editSchedulePath = "editSchedule/"
+    const val editUrlsPath = "editUrls/"
 }

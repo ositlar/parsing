@@ -10,7 +10,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import me.ositlar.application.repo.collection
+import me.ositlar.application.repo.collectionGroups
 import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
 import org.litote.kmongo.json
@@ -20,9 +20,8 @@ fun Route.groupsRoute() {
         val serializer: KSerializer<GroupSchedule> = serializer()
         val listSerializer = ListSerializer(serializer)
 
-
         get {//Выдает все потоки
-            val collection = collection.find().json
+            val collection = collectionGroups.find().json
             val listGroupSchedule = Json.decodeFromString(listSerializer, collection)
 
             val groupsName = listGroupSchedule
@@ -36,7 +35,7 @@ fun Route.groupsRoute() {
         get("{stream}"){// Выдает все группы
             val stream = call.parameters["stream"] as String
 
-            val collection = collection.find().json
+            val collection = collectionGroups.find().json
             val listGroupSchedule = Json.decodeFromString(listSerializer, collection)
                 .map { it.group }
                 .filter { it.startsWith(stream) }
@@ -51,7 +50,7 @@ fun Route.groupsRoute() {
         get("{stream}/{groupName}"){
             val groupName = call.parameters["groupName"]?.decodeURLQueryComponent(charset = Charsets.UTF_8)
 
-            val group = collection.findOne (GroupSchedule::group eq groupName) ?: call
+            val group = collectionGroups.findOne (GroupSchedule::group eq groupName) ?: call
                 .respondText("group name is empty", status = HttpStatusCode.BadRequest)
 
             call.respond(group.json)
