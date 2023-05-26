@@ -8,11 +8,11 @@ import org.jsoup.nodes.Element
 
 var source = mutableListOf<String>()
 fun createTestData() {
-    if (collectionUrls.find().toList().isEmpty()) {
+    source = if (collectionUrls.find().toList().isEmpty()) {
         collectionUrls.insertOne(Urls(urls as MutableList<String>))
-        source = collectionUrls.find().toList().first().urls
+        collectionUrls.find().toList().first().urls
     } else {
-        source = collectionUrls.find().toList().first().urls
+        collectionUrls.find().toList().first().urls
     }
     if (collectionGroups.find().toList().isEmpty()) {
         parse()

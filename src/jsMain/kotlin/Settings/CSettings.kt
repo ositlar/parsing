@@ -67,7 +67,6 @@ val CSettings = FC<Props>("Settings") {
             type = InputType.file
             onChange = { event ->
                 event.target.files!![0].text().then { res = it }
-                //console.log(res)
             }
         }
         ReactHTML.p {
