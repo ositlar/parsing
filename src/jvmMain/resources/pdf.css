@@ -3,6 +3,6 @@ body {
     color:#000;
 }
 
-header, footer, input, select, .btn, label{
+header, footer, input, select, .btn, label, .btnChange, legend{
     display: none;
 }
